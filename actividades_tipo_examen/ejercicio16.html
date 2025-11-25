@@ -1,0 +1,33 @@
+<img id="grande" src="img1.jpg" width="300">
+
+<br><br>
+<img class="mini" src="img1.jpg" width="80">
+<img class="mini" src="img2.jpg" width="80">
+<img class="mini" src="img3.jpg" width="80">
+
+<button id="prev">Anterior</button>
+<button id="next">Siguiente</button>
+
+<script>
+  let imagenes = ["img1.jpg", "img2.jpg", "img3.jpg"];
+  let index = 0;
+
+  const grande = document.getElementById("grande");
+
+  document.querySelectorAll(".mini").forEach((img, i) => {
+    img.addEventListener("click", () => {
+      index = i;
+      grande.src = imagenes[index];
+    });
+  });
+
+  document.getElementById("prev").onclick = () => {
+    index = (index - 1 + imagenes.length) % imagenes.length;
+    grande.src = imagenes[index];
+  };
+
+  document.getElementById("next").onclick = () => {
+    index = (index + 1) % imagenes.length;
+    grande.src = imagenes[index];
+  };
+</script>

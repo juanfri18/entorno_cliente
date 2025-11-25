@@ -1,0 +1,25 @@
+<button onclick="add('Manzana', 2)">Manzana 2€</button>
+<button onclick="add('Pan', 1)">Pan 1€</button>
+<button onclick="add('Queso', 4)">Queso 4€</button>
+
+<p>Total: <span id="total">0</span> €</p>
+<button onclick="vaciar()">Vaciar</button>
+
+<script>
+  let carrito = [];
+
+  function add(nombre, precio) {
+    carrito.push({ nombre, precio });
+    actualizar();
+  }
+
+  function vaciar() {
+    carrito = [];
+    actualizar();
+  }
+
+  function actualizar() {
+    let total = carrito.reduce((acc, p) => acc + p.precio, 0);
+    document.getElementById("total").textContent = total;
+  }
+</script>

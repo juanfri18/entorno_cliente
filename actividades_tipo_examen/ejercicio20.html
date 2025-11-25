@@ -1,0 +1,26 @@
+<form id="form">
+  <label><input type="radio" name="nota" value="1"> ⭐</label>
+  <label><input type="radio" name="nota" value="2"> ⭐⭐</label>
+  <label><input type="radio" name="nota" value="3"> ⭐⭐⭐</label>
+  <label><input type="radio" name="nota" value="4"> ⭐⭐⭐⭐</label>
+  <label><input type="radio" name="nota" value="5"> ⭐⭐⭐⭐⭐</label>
+  <br><br>
+  <button>Enviar</button>
+</form>
+
+<p id="mensaje"></p>
+
+<script>
+  document.getElementById("form").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    let nota = Number(document.querySelector("input[name='nota']:checked").value);
+    let msg = "";
+
+    if (nota <= 2) msg = "Lamentamos tu experiencia 😢";
+    else if (nota <= 4) msg = "Gracias por tu opinión 😊";
+    else msg = "¡Nos alegra que te haya encantado! 🌟";
+
+    document.getElementById("mensaje").textContent = msg;
+  });
+</script>

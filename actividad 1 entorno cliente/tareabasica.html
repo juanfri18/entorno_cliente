@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicios 7, 8, 9 y 10</title>
+    <style>
+        /*  EJERCICIO 9  */
+        button {
+            background-color: rgb(5, 92, 223);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: green;
+        }
+
+        /*  EJERCICIO 10  */
+        #texto {
+            color: black;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <!--  EJERCICIO 7  -->
+    <h1>Primera tarea</h1>
+    <h2>
+        ESTO ES UN PÁRRAFO DE TEXTO<br>
+        ESTO ES OTRO PÁRRAFO DE TEXTO
+    </h2>
+
+    <!--  EJERCICIO 8  -->
+    <button onclick="mostrarAlerta()">Pulsa aquí</button>
+
+    <script>
+        function mostrarAlerta() {
+            alert("Esto es un mensaje emergente");
+        }
+    </script>
+
+    <hr>
+
+    <!-- ===== EJERCICIO 10 ===== -->
+    <p id="texto">Este texto cambiará cuando pulses el botón.</p>
+    <button onclick="cambiarTexto()">Cambiar texto</button>
+
+    <script>
+        function cambiarTexto() {
+            const p = document.getElementById("texto");
+            p.textContent = "¡El texto ha cambiado con JavaScript!";
+            p.style.color = "red";
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Presupuesto Web</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    #resultado {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    .rojo {
+      color: red;
+    }
+    .verde {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Calculadora de presupuesto web</h2>
+
+  <label>
+    Nº de páginas: 
+    <input type="number" id="paginas" min="0" value="0">
+  </label>
+  <br><br>
+
+  <label>
+    <input type="checkbox" id="seo">
+    Incluir SEO (+300€)
+  </label>
+  <br><br>
+
+  <label>
+    <input type="checkbox" id="mantenimiento">
+    Incluir mantenimiento (+200€)
+  </label>
+  <br><br>
+
+  <button id="calcular">Calcular presupuesto</button>
+
+  <p id="resultado"></p>
+
+  <script src="ejercicio11.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<textarea id="texto" rows="5" cols="40"></textarea>
+<p id="contador">0 / 200 caracteres</p>
+
+<style>
+  #contador.rojo {
+    color: red;
+    font-weight: bold;
+  }
+</style>
+
+<script>
+  const textarea = document.getElementById("texto");
+  const contador = document.getElementById("contador");
+
+  textarea.addEventListener("input", () => {
+    let cantidad = textarea.value.length;
+    contador.textContent = `${cantidad} / 200 caracteres`;
+
+    if (cantidad > 200) {
+      contador.classList.add("rojo");
+      contador.textContent += " — Límite alcanzado";
+    } else {
+      contador.classList.remove("rojo");
+    }
+  });
+</script>

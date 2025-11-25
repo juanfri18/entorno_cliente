@@ -1,0 +1,14 @@
+<button id="toggle">Cambiar tema</button>
+
+<style>
+  body.dark {
+    background: #222;
+    color: white;
+  }
+</style>
+
+<script>
+  document.getElementById("toggle").onclick = () => {
+    document.body.classList.toggle("dark");
+  };
+</script>

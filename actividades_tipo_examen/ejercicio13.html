@@ -1,0 +1,22 @@
+<input type="number" id="longitud" placeholder="Longitud">
+<button id="generar">Generar</button>
+
+<p id="resultado"></p>
+
+<script>
+  const letras = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const numeros = "0123456789";
+  const simbolos = "!@#$%^&*()-_=+[]{}<>?";
+  const todos = letras + numeros + simbolos;
+
+  document.getElementById("generar").addEventListener("click", () => {
+    let len = Number(document.getElementById("longitud").value);
+    let pass = "";
+
+    for (let i = 0; i < len; i++) {
+      pass += todos[Math.floor(Math.random() * todos.length)];
+    }
+
+    document.getElementById("resultado").textContent = pass;
+  });
+</script>

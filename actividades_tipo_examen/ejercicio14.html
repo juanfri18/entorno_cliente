@@ -1,0 +1,47 @@
+<form id="form">
+  Nombre: <input type="text" id="nombre"><br>
+  <small id="errorNombre"></small><br>
+
+  Email: <input type="email" id="email"><br>
+  <small id="errorEmail"></small><br>
+
+  Mensaje: <textarea id="mensaje"></textarea><br>
+  <small id="errorMensaje"></small><br>
+
+  <button type="submit">Enviar</button>
+</form>
+
+<script>
+  document.getElementById("form").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    let nombre = document.getElementById("nombre").value;
+    let email = document.getElementById("email").value;
+    let mensaje = document.getElementById("mensaje").value;
+
+    let error = false;
+
+    document.getElementById("errorNombre").textContent = "";
+    document.getElementById("errorEmail").textContent = "";
+    document.getElementById("errorMensaje").textContent = "";
+
+    if (nombre.length < 3) {
+      document.getElementById("errorNombre").textContent = "El nombre es muy corto.";
+      error = true;
+    }
+
+    if (!(email.includes("@") && email.includes("."))) {
+      document.getElementById("errorEmail").textContent = "Email no válido.";
+      error = true;
+    }
+
+    if (mensaje.trim() === "") {
+      document.getElementById("errorMensaje").textContent = "El mensaje no puede estar vacío.";
+      error = true;
+    }
+
+    if (!error) {
+      alert("Formulario enviado correctamente");
+    }
+  });
+</script>

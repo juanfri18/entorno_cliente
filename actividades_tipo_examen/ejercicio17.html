@@ -1,0 +1,31 @@
+Precio base: <input type="number" id="precio"><br><br>
+Descuento (%): <input type="number" id="descuento"><br><br>
+
+IVA:
+<select id="iva">
+  <option value="4">4%</option>
+  <option value="10">10%</option>
+  <option value="21">21%</option>
+</select>
+
+<br><br>
+<button id="calcular">Calcular</button>
+<p id="resultado"></p>
+
+<script>
+  document.getElementById("calcular").onclick = () => {
+    let precio = Number(document.getElementById("precio").value);
+    let descuento = Number(document.getElementById("descuento").value);
+    let iva = Number(document.getElementById("iva").value);
+
+    if (descuento > 50) {
+      alert("Descuento excesivo");
+    }
+
+    let precioDesc = precio - (precio * descuento / 100);
+    let precioFinal = precioDesc + (precioDesc * iva / 100);
+
+    document.getElementById("resultado").textContent = 
+      "Precio final: " + precioFinal.toFixed(2) + " €";
+  };
+</script>
