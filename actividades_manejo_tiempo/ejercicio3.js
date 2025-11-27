@@ -1,9 +1,18 @@
-let segundos = 0;
+let temporizador; // guardará el ID del setInterval
+let colorActual = "negro"; // estado inicial
 
 function crono() {
-    console.log(segundos);
-    segundos++;
+    const texto = document.getElementById("texto");
+
+    // Cambiar de color según el estado
+    if (colorActual === "negro") {
+        texto.style.color = "red";
+        colorActual = "rojo";
+    } else {
+        texto.style.color = "black";
+        colorActual = "negro";
+    }
 }
 
-console.log("CRONOMETRO");
-setInterval(crono, 1000);
+// Inicia el cambio de color cada 500 ms
+temporizador = setInterval(crono, 500);
