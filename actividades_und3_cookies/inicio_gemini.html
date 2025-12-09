@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Cookies - Unidad 3</title>
+</head>
+<body>
+    <h1>Sistema de Bienvenida con Cookies</h1>
+    <p>Si es tu primera vez, te pediremos el nombre. Si ya has entrado, te saludaremos.</p>
+    
+    <button onclick="borrarCookies()">Borrar Cookies (Para probar de nuevo)</button>
+
+    <script>
+        // 1. Función establecerCookie
+        function establecerCookie(nombre, valor, dias) {
+            // Requisito: Calcular caducidad usando setTime()
+            const fecha = new Date();
+            fecha.setTime(fecha.getTime() + (dias * 24 * 60 * 60 * 1000));
+            
+            let expires = "expires=" + fecha.toUTCString();
+            
+            // Requisito: Codificar valor con encodeURIComponent()
+            // También aplicamos toUpperCase() aquí para cumplir el requisito de String
+            // y guardar el nombre siempre en mayúsculas.
+            let valorSeguro = encodeURIComponent(valor.toUpperCase());
+
+            // Crea la cookie
+            document.cookie = nombre + "=" + valorSeguro + "; " + expires + "; path=/";
+            console.log("Cookie guardada: " + nombre);
+        }
+
+        // 2. Función obtenerCookie
+        function obtenerCookie(nombre) {
+            let nombreEQ = nombre + "=";
+            
+            // Requisito: Leer document.cookie y usar .split(";")
+            let arrayCookies = document.cookie.split(';');
+
+            for(let i = 0; i < arrayCookies.length; i++) {
+                let c = arrayCookies[i];
+                
+                // Requisito: Usar .trim() (elimina espacios al inicio que suele dejar el split)
+                c = c.trim();
+
+                // Requisito: Usar .startsWith()
+                if (c.startsWith(nombreEQ)) {
+                    // Requisito de String: .substring() para extraer el valor
+                    // Cortamos desde donde termina el nombre= hasta el final
+                    let valor = c.substring(nombreEQ.length, c.length);
+                    
+                    return decodeURIComponent(valor);
+                }
+            }
+            return ""; // Devuelve vacío si no la encuentra
+        }
+
+        // 3. Función comprobarCookie
+        function comprobarCookie(nombre) {
+            // Requisito String: .includes()
+            // Usamos includes para ver rápidamente si document.cookie contiene el nombre
+            // antes de intentar procesarla (optimización y cumplimiento del requisito).
+            if (document.cookie.includes(nombre + "=")) {
+                
+                let usuario = obtenerCookie(nombre);
+                
+                if (usuario != "") {
+                    // Si existe -> saluda
+                    alert("Bienvenido de nuevo, " + usuario);
+                } else {
+                    // Caso raro: existe la clave parcial pero no se recuperó bien, tratamos como nuevo
+                    gestionarNuevoUsuario(nombre);
+                }
+
+            } else {
+                // Si no existe -> pide nombre
+                gestionarNuevoUsuario(nombre);
+            }
+        }
+
+        // Función auxiliar para no repetir código en comprobarCookie
+        function gestionarNuevoUsuario(nombreCookie) {
+            let usuario = prompt("Por favor, introduce tu nombre:", "");
+            
+            // Verificamos que no sea nulo y que no esté vacío
+            if (usuario != "" && usuario != null) {
+                // Requisito String: .trim() para limpiar input del usuario
+                usuario = usuario.trim();
+                
+                // Guardamos la cookie por 30 días
+                establecerCookie(nombreCookie, usuario, 30);
+                
+                // Recargamos la página para ver el efecto o saludamos directamente
+                alert("Gracias " + usuario + ", hemos guardado tus datos.");
+            }
+        }
+
+        // Función extra para facilitar las pruebas
+        function borrarCookies() {
+            document.cookie = "usuario=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            alert("Cookies borradas. Recarga la página.");
+            location.reload();
+        }
+
+        // 4. Al cargar la página
+        window.onload = function() {
+            comprobarCookie("usuario");
+        };
+
+    </script>
+</body>
+</html>
