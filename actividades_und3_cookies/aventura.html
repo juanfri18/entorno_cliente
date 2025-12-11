@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //array actividades
+        let actividades=[
+            {
+                nombre:"Subir el Everest",
+                tipo:"Montañismo",
+                fecha:new Date("2026-12-18"),
+                precio:2152
+            },
+            {
+                nombre:"Recorrer el desierto del Sahara",
+                tipo:"Caminar",
+                fecha:new Date("2027-12-18"),
+                precio:1777
+            },
+            {
+                nombre:"vuelta al mundo en globo",
+                tipo:"Extremo",
+                fecha:new Date("2028-12-18"),
+                precio:23000
+            },
+            {
+                nombre:"Iniciar una guerra en Africa",
+                tipo:"Guerra",
+                fecha:new Date("2029-12-18"),
+                precio:1
+            },
+            {
+                nombre:"Pilotar un avion",
+                tipo:"Vuelo",
+                fecha:new Date("2030-12-18"),
+                precio:3577
+            }
+        ]
+        //map creado
+  
+        let participantesPorActividad=new Map();
+        for (let act of actividades) {
+            participantesPorActividad.set(act.nombre, 0);
+        }      // nivel pro
+        //let participantesPorActividad = new Map(actividades.map(a => [a.nombre, 0]));
+
+       
+        //funciones
+        //ejercicio 2
+        function normalizartexto(texto){
+            let texto_normalizado=texto.trim().toLowerCase();
+            return texto_normalizado;
+        }
+        //ejercicio 3,4
+        function filtrarPorTipo(tipoBuscado){
+            let array_filtrado=new Array();
+            let buscado_normalizado=normalizartexto(tipoBuscado);
+            for(let actividad of actividades){
+                let actividad_actual_morm=normalizartexto(actividad.tipo)
+                if(actividad_actual_morm==buscado_normalizado){
+                    array_filtrado.push(actividad);
+                }
+            }
+            if(array_filtrado.length==0){
+                return "Este tipo de activada no existe";
+            }else{
+                return array_filtrado;
+            }
+        }
+        //ejercicio 5
+        function buscarActividad(palabra){
+            let array_palabra_contenida=new Array();
+            let palabra_normalizado=normalizartexto(palabra);
+            for(let actividad of actividades){
+                let actividad_actual_morm=normalizartexto(actividad.nombre)
+                if(actividad_actual_morm.includes(palabra_normalizado)){
+                    array_palabra_contenida.push(actividad);
+                }
+            }
+                        
+            if(array_palabra_contenida.length==0){
+                return "Este palabra no esta contenida en ninguna actividad";
+            }else{
+                return array_palabra_contenida;
+            }
+        }
+        //ejercicio 6
+        function apuntarParticipantes(nombreActividad, cantidad) {
+            let buscado = normalizartexto(nombreActividad);
+            for (let clave of participantesPorActividad.keys()) {
+                if (normalizartexto(clave) === buscado) {
+                    let total = participantesPorActividad.get(clave) + cantidad;
+                    participantesPorActividad.set(clave, total);
+                    return `Apuntados ${cantidad} en '${clave}'. Total: ${total}`;
+                }
+            }
+            return `La actividad '${nombreActividad}' no existe`;
+        }
+        //ejercicio7
+        function diasParaLaActividad(fecha){
+            let fecha_actual= new Date();
+            milisegundos_restantes=fecha.getTime()-fecha_actual.getTime();
+            dias_faltantes=milisegundos_restantes/(1000*60*60*24);
+            //REDONDEA HACCIA ARRIBA SIEMPRE
+            return Math.ceil(dias_faltantes);
+        }
+
+        //PRUEBAS DE FUNCIONES
+        console.log(filtrarPorTipo("vuelo"));
+        console.log(buscarActividad("Everest"))
+        console.log(apuntarParticipantes("",23))
+        // Prueba añadiendo participantes ignorando mayúsculas
+        console.log(apuntarParticipantes("subir el everest", 5)); 
+
+        // Prueba viendo el mapa para confirmar que se guardó
+        console.log(participantesPorActividad);
+        for(let actividad of actividades){
+            let dias=diasParaLaActividad(actividad.fecha);
+            let mensaje=`Quedan aun ${dias} para que se inicie ${actividad.nombre}`;
+            console.log(mensaje);
+        }
+        //GUARDAR EN ALMACENAMINETO
+        let actividadesJSON = JSON.stringify(actividades);
+        localStorage.setItem("actividades_guardadas", actividadesJSON);
+        console.log("Actividades guardadas en LocalStorage.");
+        let mapaComoArray = Array.from(participantesPorActividad);
+        
+        let mapaJSON = JSON.stringify(mapaComoArray);
+        sessionStorage.setItem("participantes_temp", mapaJSON);
+        console.log("Participantes guardados en SessionStorage.");
+        //COOKIES
+        // EJERCICIO 9: Cookies
+        function guardarActividadFavorita(nombreActividad) {
+            let nombreCookie = "actividadFavorita";
+            let dias = 5;
+
+            let valor = nombreActividad.toUpperCase();
+
+            let fecha = new Date();
+            fecha.setTime(fecha.getTime() + (dias * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + fecha.toUTCString();
+
+            document.cookie = `${nombreCookie}=${valor}; ${expires}; path=/`;
+            
+            console.log(`Cookie creada: ${nombreCookie} -> ${valor}`);
+        }
+
+        guardarActividadFavorita(actividades[0].nombre); 
+
+    </script>
+</body>
+</html>
