@@ -7,7 +7,52 @@
 </head>
 <body>
     <script>
+        // 1. ESTABLECER
+        function establecerCookie(nombre, valor, dias) {
+            let valor_codificado = encodeURIComponent(valor);
+            let fecha = new Date(); 
+            fecha.setTime(fecha.getTime() + (dias * 24 * 60 * 60 * 1000));
+            let expiracion = "expires=" + fecha.toUTCString();
+            document.cookie = nombre + "=" + valor_codificado + ";" + expiracion + ";path=/";
+        }
+
+        // 2. OBTENER
+        function obtenerCookie(nombre){
+            let busqueda = nombre + "=";
+            let array_cookies = document.cookie.split(";");
+
+            for (let i = 0; i < array_cookies.length; i++) {
+                let cookie_actual = array_cookies[i];
+                cookie_actual = cookie_actual.trim();
+                
+                if(cookie_actual.startsWith(busqueda)){
+                    let valor = cookie_actual.substring(busqueda.length);
+                    // Decodificamos por si tiene caracteres raros
+                    return decodeURIComponent(valor);
+                }
+            }
+            return null;
+        }  
+
+        // 3. COMPROBAR
+        function comprobarCookie(nombre) {
+            let valor_cookie = obtenerCookie(nombre);
+            
+            if(valor_cookie != null){
+                alert("Bienvenido de nuevo, " + valor_cookie);
+            } else {
+                let valor_introducido = prompt("No te conozco. Dime tu nombre:");
+                if (valor_introducido) {
+                    establecerCookie(nombre, valor_introducido, 30);
+                    location.reload();
+                }
+            }
+        }
+
         
+        comprobarCookie("usuario");
+
+        console.log("Cookies actuales:", document.cookie);
     </script>
 </body>
 </html>
