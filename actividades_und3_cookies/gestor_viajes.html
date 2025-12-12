@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestor Viajes</title>
+</head>
+<body>
+    <script>
+        // 1. ARRAY DESTINOS
+        let destinos = [
+            { ciudad: "Paris", pais: "Francia", fechaObjetivo: new Date("2026-06-15"), presupuesto: 1500 },
+            { ciudad: "Tokyo", pais: "Japon", fechaObjetivo: new Date("2027-01-10"), presupuesto: 3000 },
+            { ciudad: "Lyon", pais: "Francia", fechaObjetivo: new Date("2026-08-20"), presupuesto: 800 },
+            { ciudad: "Roma", pais: "Italia", fechaObjetivo: new Date("2026-05-01"), presupuesto: 1200 }
+        ];
+
+        // 2. FUNCIÓN NORMALIZAR (La que ya conoces)
+        function normalizarTexto(cadena) {
+            return cadena.trim().toLowerCase();
+        }
+
+        // 3. MAP PAISES VISITADOS (Clave: País, Valor: Cantidad destinos)
+        let paisesVisitados = new Map();
+        
+        // Rellenamos el mapa inicial basándonos en el array
+        for(let dest of destinos) {
+            let paisNorm = normalizarTexto(dest.pais);
+            // Sumamos 1 al contador de ese país
+            let actual = paisesVisitados.get(paisNorm) || 0;
+            paisesVisitados.set(paisNorm, actual + 1);
+        }
+        console.log("Mapa Paises:", paisesVisitados);
+
+        // 4. DÍAS RESTANTES (Cuenta atrás)
+        function diasRestantes(fechaObjetivo) {
+            let hoy = new Date();
+            let diferencia = fechaObjetivo.getTime() - hoy.getTime();
+            
+            // Si la fecha ya pasó, saldrá negativo
+            if(diferencia < 0) return 0;
+
+            // Convertir ms a días y redondear hacia arriba (ceil)
+            return Math.ceil(diferencia / (1000 * 60 * 60 * 24));
+        }
+
+        // 5. GUARDAR LOCALSTORAGE
+        localStorage.setItem("misDestinos", JSON.stringify(destinos));
+
+        // 6. COOKIE "preferenciaViaje"
+        function guardarPreferencia(ciudad) {
+            let valor = ciudad.toUpperCase(); // Requisito: Mayúsculas
+            let fecha = new Date();
+            fecha.setTime(fecha.getTime() + (7 * 24 * 60 * 60 * 1000)); // +7 días
+            
+            document.cookie = `preferenciaViaje=${valor}; expires=${fecha.toUTCString()}; path=/`;
+            console.log("Preferencia guardada: " + valor);
+        }
+
+        // 7. FILTRAR POR PAÍS (Normalizado)
+        function filtrarPorPais(paisBuscado) {
+            let buscado = normalizarTexto(paisBuscado);
+            let encontrados = [];
+
+            for(let d of destinos) {
+                if(normalizarTexto(d.pais) === buscado) {
+                    encontrados.push(d);
+                }
+            }
+            return encontrados;
+        }
+
+        // PRUEBAS
+        console.log("Viajes a Francia:", filtrarPorPais("   FRANCIA  "));
+        console.log("Días para ir a Tokyo:", diasRestantes(destinos[1].fechaObjetivo));
+        guardarPreferencia("Tokyo");
+
+    </script>
+</body>
+</html>

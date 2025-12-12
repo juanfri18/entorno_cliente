@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RPG Inventario</title>
+</head>
+<body>
+    <script>
+        let inventario = [
+            { nombre: "Espada Bastarda", tipo: "arma", rareza: "epico", fechaObtencion: new Date("2025-12-09") },
+            { nombre: "Balas de Plata", tipo: "municion", rareza: "comun", fechaObtencion: new Date("2025-12-11") },
+            { nombre: "Pocion Vida", tipo: "consumible", rareza: "especial", fechaObtencion: new Date("2025-11-11") },
+            { nombre: "Escudo Madera", tipo: "arma", rareza: "comun", fechaObtencion: new Date("2025-10-01") }
+        ];
+
+        // 2. FUNCIÓN CONSTRUCTORA (Corregida)
+        function CrearObjeto(nombre, tipo, rareza) {
+            // Validamos: Solo letras y espacios
+            let validacionNombre = nombre.match(/^[a-zA-Z\s]+$/);
+            
+            if (validacionNombre) {
+                this.nombre = nombre; // Guardamos el nombre original si es válido
+                this.tipo = tipo.toLowerCase();
+                this.rareza = rareza.toLowerCase();
+                this.fechaObtencion = new Date(); // Fecha actual por defecto
+                console.log("Objeto creado: " + this.nombre);
+            } else {
+                console.error("Error: El nombre solo puede contener letras y espacios.");
+                return null; // Devolvemos nulo si falla
+            }
+        }
+
+        // Probamos a crear uno nuevo y meterlo al array
+        let nuevoItem = new CrearObjeto("Hacha Doble", "ARMA", "LegenDaria");
+        if(nuevoItem.nombre) { // Si se creó bien...
+            inventario.push(nuevoItem);
+        }
+
+        // 3. GUARDAR EN LOCALSTORAGE
+        // Lo guardamos todo (el array actualizado)
+        localStorage.setItem("inventarioRPG", JSON.stringify(inventario));
+        console.log("Inventario guardado en Storage.");
+
+        // 4. MAP: CONTAR POR TIPO
+        let contadorTipos = new Map();
+
+        for (let item of inventario) {
+            let tipo = item.tipo;
+            // Si ya existe, recuperamos valor + 1. Si no, 0 + 1.
+            let cantidad = (contadorTipos.get(tipo) || 0) + 1;
+            contadorTipos.set(tipo, cantidad);
+        }
+        console.log("Conteo por tipos:", contadorTipos);
+
+        // 5. FUNCIÓN DIAS EN INVENTARIO
+        function diasEnInventario(fechaItem) {
+            let hoy = new Date();
+            // Resta de fechas en milisegundos
+            let diferencia = hoy.getTime() - fechaItem.getTime();
+            // Convertir a días y redondear
+            return Math.floor(diferencia / (1000 * 60 * 60 * 24));
+        }
+        
+        // Probamos con el primer objeto
+        console.log(`Días que tienes la ${inventario[0].nombre}: ${diasEnInventario(inventario[0].fechaObtencion)}`);
+
+        // 6. COOKIE "JUGADOR"
+        function guardarJugador(nombre) {
+            let valor = nombre.toUpperCase(); // Requisito: Mayúsculas
+            let fecha = new Date();
+            fecha.setTime(fecha.getTime() + (2 * 24 * 60 * 60 * 1000)); // +2 días
+            
+            document.cookie = `jugador=${valor}; expires=${fecha.toUTCString()}; path=/`;
+            console.log("Cookie jugador guardada.");
+        }
+        
+        guardarJugador("Aragorn");
+
+    </script>
+</body>
+</html>

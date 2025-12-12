@@ -3,112 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resumen Total JS: Unidad 3</title>
+    <title>Chuletario JS: Unidad 3 + Tiempo</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background: #f4f4f4; }
-        h1 { text-align: center; color: #333; }
-        .card { background: white; padding: 15px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        h2 { color: #d63384; border-bottom: 2px solid #eee; padding-bottom: 5px; }
-        code { background: #272822; color: #f8f8f2; padding: 2px 5px; border-radius: 4px; font-family: monospace; }
-        pre { background: #272822; color: #f8f8f2; padding: 10px; border-radius: 5px; overflow-x: auto; }
-        .note { background: #e7f3fe; border-left: 6px solid #2196F3; padding: 10px; font-size: 0.9em; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; }
+        h1 { text-align: center; color: #2c3e50; text-transform: uppercase; letter-spacing: 2px; }
+        .intro { text-align: center; background: #fff3cd; padding: 10px; border-radius: 5px; border: 1px solid #ffeeba; margin-bottom: 20px; }
+        
+        /* Estilo de las tarjetas */
+        .card { background: white; padding: 20px; margin-bottom: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 6px solid #3498db; }
+        .card.time { border-left-color: #e74c3c; } /* Rojo para tiempo */
+        .card.storage { border-left-color: #f1c40f; } /* Amarillo para datos */
+        
+        h2 { margin-top: 0; color: #2980b9; font-size: 1.4em; border-bottom: 1px solid #eee; padding-bottom: 8px; }
+        .card.time h2 { color: #c0392b; }
+        
+        /* Estilo del código */
+        pre { background: #282c34; color: #abb2bf; padding: 15px; border-radius: 6px; overflow-x: auto; font-size: 0.95em; line-height: 1.4; border: 1px solid #ddd; }
+        code { font-family: 'Consolas', monospace; }
+        
+        /* Comentarios en el código para que destaquen */
+        .comentario { color: #98c379; font-style: italic; }
+        .palabra-clave { color: #c678dd; }
+        .funcion { color: #61afef; }
     </style>
 </head>
 <body>
 
-    <h1>⚡ Chuleta JavaScript: Unidad 3 ⚡</h1>
-    <p style="text-align: center;"><strong>IMPORTANTE:</strong> Abre la consola (F12) para ver los resultados ejecutados.</p>
-
-    <!-- 1. COOKIES -->
-    <div class="card">
-        <h2>1. Cookies 🍪</h2>
-        <p>Cadena de texto con caducidad. Requiere formato UTC.</p>
-        <pre>
-// 1. Crear fecha futura (+5 días)
-let fecha = new Date();
-fecha.setTime(fecha.getTime() + (5*24*60*60*1000));
-
-// 2. Guardar (Codificar valor + UTC String)
-document.cookie = "user=" + encodeURIComponent("Ana") + 
-                  "; expires=" + fecha.toUTCString();
-
-// 3. Leer (Hay que trocear el string)
-let arrayCookies = document.cookie.split(";");
-// Luego se recorre buscando .startsWith...</pre>
+    <h1>⚡ Chuletario Completo JS ⚡</h1>
+    <div class="intro">
+        💡 <strong>TRUCO:</strong> Abre la consola (F12) para ver los ejemplos ejecutándose en vivo.
     </div>
 
-    <!-- 2. STORAGE & JSON -->
-    <div class="card">
-        <h2>2. Storage & JSON 📦</h2>
-        <p><code>localStorage</code> (Eterno) y <code>sessionStorage</code> (Sesión). Solo guardan TEXTO.</p>
+    <!-- 1. MANEJO DEL TIEMPO (NUEVO) -->
+    <div class="card time">
+        <h2>1. Control del Tiempo (Timers) ⏱️</h2>
+        <p>Vital para cronómetros, relojes y retardos.</p>
         <pre>
+// A. ESPERAR (Timeout) -> Ejecuta 1 vez tras esperar
+let idTimeout = setTimeout(() => {
+    console.log("¡Han pasado 3 segundos!");
+}, 3000);
+
+// CANCELAR espera (antes de que ocurra)
+clearTimeout(idTimeout);
+
+// B. REPETIR (Interval) -> Repite infinitamente
+let cuenta = 0;
+let idInterval = setInterval(() => {
+    cuenta++;
+    console.log("Segundos: " + cuenta);
+}, 1000); // 1000ms = 1 segundo
+
+// PARAR repetición
+clearInterval(idInterval);
+
+// C. CARGAR AL INICIO (Para cronómetros automáticos)
+window.onload = function() {
+    console.log("Página cargada, iniciamos...");
+};</pre>
+    </div>
+
+    <!-- 2. RELOJES Y FECHAS -->
+    <div class="card time">
+        <h2>2. Fechas y Reloj Digital 📅</h2>
+        <p>Obtener hora actual y calcular diferencias.</p>
+        <pre>
+let ahora = new Date();
+
+// SACAR HORA (Reloj Digital)
+let horas = ahora.getHours();
+let mins = ahora.getMinutes();
+// Truco: padStart(2, "0") pone un 0 delante si es menor de 10
+let segs = ahora.getSeconds().toString().padStart(2, "0");
+console.log(`${horas}:${mins}:${segs}`);
+
+// CALCULAR DÍAS RESTANTES
+let fechaFutura = new Date("2025-12-25");
+let diferenciaMS = fechaFutura.getTime() - ahora.getTime();
+// Fórmula: ms / (1000 * 60 * 60 * 24)
+let dias = Math.ceil(diferenciaMS / (1000 * 3600 * 24));</pre>
+    </div>
+
+    <!-- 3. COOKIES -->
+    <div class="card storage">
+        <h2>3. Cookies 🍪</h2>
+        <p>Caducidad + Formato UTC + Encoding.</p>
+        <pre>
+// A. GUARDAR (Crear fecha futura)
+let fecha = new Date();
+fecha.setTime(fecha.getTime() + (5 * 24 * 60 * 60 * 1000)); // +5 días
+
+// Importante: toUTCString() y encodeURIComponent()
+let expira = "expires=" + fecha.toUTCString();
+document.cookie = "user=" + encodeURIComponent("Ana") + "; " + expira + "; path=/";
+
+// B. LEER (Trocear el string)
+let arrayCookies = document.cookie.split(";");
+// Recorrer buscando .startsWith("user=")...</pre>
+    </div>
+
+    <!-- 4. STORAGE & JSON -->
+    <div class="card storage">
+        <h2>4. Storage & JSON 📦</h2>
+        <p>Solo aceptan TEXTO. Usa JSON para guardar Arrays/Objetos.</p>
+        <pre>
+// localStorage (Eterno) | sessionStorage (Se borra al cerrar)
+
 let datos = [{id: 1, item: "PC"}];
 
-// GUARDAR (Convertir Objeto -> Texto)
+// GUARDAR (Empaquetar: Objeto -> Texto)
 let texto = JSON.stringify(datos);
 localStorage.setItem("miCarrito", texto);
 
-// LEER (Convertir Texto -> Objeto)
+// LEER (Desempaquetar: Texto -> Objeto)
 let recuperado = localStorage.getItem("miCarrito");
-let objetoOriginal = JSON.parse(recuperado);</pre>
+if(recuperado) {
+    let objetoOriginal = JSON.parse(recuperado);
+}</pre>
     </div>
 
-    <!-- 3. FECHAS -->
-    <div class="card">
-        <h2>3. Fechas (Date) 📅</h2>
-        <p>Se calculan usando <strong>milisegundos (ms)</strong>.</p>
-        <pre>
-let hoy = new Date();
-let evento = new Date("2025-12-25");
-
-// Restar fechas = Diferencia en ms
-let msRestantes = evento.getTime() - hoy.getTime();
-
-// Convertir ms a días
-let dias = msRestantes / (1000 * 60 * 60 * 24);
-console.log(Math.ceil(dias) + " días faltan");</pre>
-    </div>
-
-    <!-- 4. STRINGS -->
-    <div class="card">
-        <h2>4. Strings (Texto) 🔤</h2>
-        <p>Métodos para limpiar y comparar.</p>
-        <pre>
-let input = "  Hola Mundo  ";
-
-// Normalizar (Quitar espacios + Minúsculas)
-let limpio = input.trim().toLowerCase(); // "hola mundo"
-
-// Comprobaciones
-limpio.includes("mundo"); // true
-limpio.startsWith("hola"); // true
-limpio.substring(5); // "mundo" (Corta desde la pos 5)</pre>
-    </div>
-
-    <!-- 5. ARRAYS -->
+    <!-- 5. ARRAYS (MÉTODOS TOP) -->
     <div class="card">
         <h2>5. Arrays (Listas) 📊</h2>
-        <p>Requieren funciones flecha <code>=></code>.</p>
+        <p>Métodos imprescindibles. Recuerda las funciones flecha <code>=></code>.</p>
         <pre>
 let precios = [10, 50, 5, 20];
 
-// .map (Transformar) -> [12.1, 60.5...]
+// .map (Transformar) -> Misma cantidad
 let conIVA = precios.map(p => p * 1.21);
 
-// .filter (Filtrar) -> [50, 20]
-let caros = precios.filter(p => p > 15);
+// .filter (Filtrar) -> Cantidad variable
+let caros = precios.filter(p => p > 15); // [50, 20]
 
-// .find (Buscar uno) -> 5
-let barato = precios.find(p => p === 5);
+// .find (Buscar uno) -> Devuelve el dato o undefined
+let ganga = precios.find(p => p === 5); // 5
 
 // .sort (Ordenar) ¡OJO! Modifica original
 // a - b (Ascendente) | b - a (Descendente)
-precios.sort((a, b) => a - b); // [5, 10, 20, 50]</pre>
+precios.sort((a, b) => a - b); // [5, 10, 20, 50]
+
+// EXTRAS:
+// .forEach((e, i) => ...) -> Bucle simple
+// .findLast(...) -> Busca desde el final</pre>
     </div>
 
-    <!-- 6. MAP -->
+    <!-- 6. STRINGS (TEXTO) -->
     <div class="card">
-        <h2>6. Map (Diccionario) 🗺️</h2>
+        <h2>6. Strings (Texto) 🔤</h2>
+        <p>Limpieza y Comparación.</p>
+        <pre>
+let input = "  Hola Mundo  ";
+
+// NORMALIZAR (Espacios fuera + Minúsculas)
+let limpio = input.trim().toLowerCase(); 
+
+// COMPROBACIONES
+limpio.includes("mundo"); // true
+limpio.startsWith("hola"); // true
+limpio.substring(5); // "mundo" (Corta desde pos 5)
+
+// ORDENAR TEXTO (Respetando tildes y ñ)
+let nombres = ["Álvaro", "Zoe"];
+nombres.sort((a, b) => a.localeCompare(b, "es"));</pre>
+    </div>
+
+    <!-- 7. MAP -->
+    <div class="card">
+        <h2>7. Map (Diccionario) 🗺️</h2>
         <p>Clave única -> Valor. Mejor que objetos para búsquedas.</p>
         <pre>
 let inventario = new Map();
@@ -119,52 +180,50 @@ inventario.set("Monitor", 150);
 // Leer
 let valor = inventario.get("Monitor"); // 150
 
-// Comprobar
+// Comprobar existencia
 if(inventario.has("Monitor")) { ... }
 
 // Recorrer
 for(let clave of inventario.keys()) { ... }</pre>
     </div>
 
-    <!-- SCRIPT REAL EJECUTÁNDOSE -->
+    <!-- 8. OBJETOS -->
+    <div class="card">
+        <h2>8. Objetos y Acceso 🔧</h2>
+        <pre>
+let alumno = { nombre: "Juan", "nota final": 8 };
+
+// A. Notación de punto (Lo normal)
+console.log(alumno.nombre);
+
+// B. Notación Corchetes (Para espacios o variables)
+console.log(alumno["nota final"]); // Obligatorio por el espacio
+
+let campo = "nombre";
+console.log(alumno[campo]); // Dinámico</pre>
+    </div>
+
+    <!-- SCRIPT DE EJECUCIÓN -->
     <script>
-        console.group("⚡ EJECUCIÓN DEL RESUMEN ⚡");
-
-        // 1. COOKIES
-        console.log("--- 1. COOKIES ---");
-        let fecha = new Date();
-        fecha.setTime(fecha.getTime() + (1 * 24 * 60 * 60 * 1000));
-        document.cookie = "testResumen=Funciona; expires=" + fecha.toUTCString();
-        console.log("Cookie actual:", document.cookie);
-
-        // 2. STORAGE
-        console.log("--- 2. STORAGE ---");
-        let usuario = { nombre: "Juan", nivel: "Pro" };
-        localStorage.setItem("user_test", JSON.stringify(usuario));
-        let recuperado = JSON.parse(localStorage.getItem("user_test"));
-        console.log("Recuperado del Storage:", recuperado);
-
-        // 3. STRINGS
-        console.log("--- 3. STRINGS ---");
-        let sucio = "   APRENDER JS   ";
-        console.log("Original:", sucio);
-        console.log("Normalizado:", sucio.trim().toLowerCase());
-
-        // 4. ARRAYS
-        console.log("--- 4. ARRAYS ---");
-        let numeros = [100, 20, 5, 60];
-        console.log("Mayores de 50 (Filter):", numeros.filter(n => n > 50));
-        console.log("Ordenados (Sort a-b):", nums_copia = [...numeros].sort((a,b)=>a-b));
-
-        // 5. MAP
-        console.log("--- 5. MAP ---");
-        let mapa = new Map();
-        mapa.set("Teclado", 25);
-        mapa.set("Ratón", 10);
+        console.group("⚡ EJEMPLOS EN VIVO ⚡");
         
-        if(mapa.has("Teclado")) {
-            console.log("Precio Teclado:", mapa.get("Teclado") + "€");
-        }
+        console.log("--- 1. TIEMPO ---");
+        console.log("Iniciando cuenta atrás de 3 segundos en consola...");
+        setTimeout(() => console.log("✅ ¡Pasaron 3 seg! (Timeout ejecutado)"), 3000);
+
+        console.log("--- 2. ARRAYS ---");
+        let nums = [100, 5, 20];
+        console.log("Original:", nums);
+        console.log("Filtrados > 10:", nums.filter(n => n > 10));
+        console.log("Ordenados:", [...nums].sort((a,b)=>a-b));
+
+        console.log("--- 3. STORAGE ---");
+        localStorage.setItem("test_chuleta", "Funciona OK");
+        console.log("Leído del Storage:", localStorage.getItem("test_chuleta"));
+
+        console.log("--- 4. RELOJ ---");
+        let d = new Date();
+        console.log(`Hora actual cargada: ${d.getHours()}:${d.getMinutes()}`);
 
         console.groupEnd();
     </script>
