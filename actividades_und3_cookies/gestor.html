@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor Productos</title>
+</head>
+<body>
+    <script>
+        let productos = [
+            { nombre: "Teclado", precio: 20, categoria: "Periféricos" },
+            { nombre: "Monitor", precio: 150, categoria: "Pantallas" },
+            { nombre: "Ratón", precio: 10, categoria: "Periféricos" },
+            { nombre: "Silla Gaming", precio: 250, categoria: "Mobiliario" },
+            { nombre: "Alfombrilla", precio: 5, categoria: "Periféricos" }
+        ];
+
+        // 1. MAP: Obtener solo nombres (CORREGIDO)
+        // El ejercicio pide usar .map(), no un bucle for
+        function obtener_nombres(){
+            return productos.map(p => p.nombre);
+        }
+
+        // 2. FILTER: Productos caros
+        function filtrar_productos_caros(){
+            return productos.filter(p => p.precio > 50);
+        }
+
+        // 3. FIND: Buscar por nombre
+        function buscar_por_nombre(nombre){
+            // return implícito (más corto)
+            return productos.find(p => p.nombre === nombre);
+        }
+
+        // 4. FINDINDEX: Buscar posición
+        function buscar_indice_nombre(nombre){
+            return productos.findIndex(p => p.nombre === nombre);
+        }
+
+        // 5. SOME: ¿Hay alguno mayor que X?
+        function existe_al_menos_uno(precioTope){
+            return productos.some(p => p.precio > precioTope);
+        }
+
+        // 6. EVERY: ¿Son TODOS mayores que X? (RENOMBRADO)
+        function son_todos_mayores(precioTope){
+            return productos.every(p => p.precio > precioTope);
+        }
+
+        // --- MÉTODOS QUE FALTABAN ---
+
+        // 7. SORT: Ordenar (Modifica el original)
+        function ordenar_por_precio(){
+            // Callback obligatorio: a - b para ascendente
+            productos.sort((a, b) => a.precio - b.precio);
+            return productos;
+        }
+
+        // 8. TOSORTED: Ordenar en una copia (No toca el original)
+        function obtener_ordenados_seguro(){
+            // Es igual que sort, pero devuelve uno nuevo
+            return productos.toSorted((a, b) => a.precio - b.precio);
+        }
+
+        // 9. REVERSE: Dar la vuelta
+        function invertir_lista(){
+            productos.reverse();
+            return productos;
+        }
+
+        // --- COLECCIONES (MAP Y SET) ---
+
+        // 10. Categorías únicas (El PDF dice "Map", pero para únicos se usa Set)
+        function obtener_categorias_unicas(){
+            // Primero sacamos todas las categorías ["Periféricos", "Pantallas", "Periféricos"...]
+            let todasLasCategorias = productos.map(p => p.categoria);
+            
+            // Creamos un SET (Colección que elimina duplicados automáticamente)
+            let categoriasUnicas = new Set(todasLasCategorias);
+            
+            // Lo convertimos a Array para verlo mejor (opcional)
+            return Array.from(categoriasUnicas);
+        }
+
+        // 11. MAP: Clave=Nombre, Valor=Precio
+        function crear_mapa_precios(){
+            let mapa = new Map();
+            
+            // Recorremos y rellenamos
+            for(let p of productos){
+                mapa.set(p.nombre, p.precio);
+            }
+            return mapa;
+        }
+
+        // --- ZONA DE PRUEBAS (Consola) ---
+        console.log("--- Nombres ---");
+        console.log(obtener_nombres());
+
+        console.log("--- Ordenados sin tocar original (.toSorted) ---");
+        console.log(obtener_ordenados_seguro());
+
+        console.log("--- Categorías Únicas ---");
+        console.log(obtener_categorias_unicas());
+
+        console.log("--- Mapa de Precios ---");
+        let miMapa = crear_mapa_precios();
+        console.log(miMapa);
+        // Prueba de lectura del map
+        console.log("Precio del Monitor sacado del Map: " + miMapa.get("Monitor") + "€");
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen Total JS: Unidad 3</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background: #f4f4f4; }
+        h1 { text-align: center; color: #333; }
+        .card { background: white; padding: 15px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h2 { color: #d63384; border-bottom: 2px solid #eee; padding-bottom: 5px; }
+        code { background: #272822; color: #f8f8f2; padding: 2px 5px; border-radius: 4px; font-family: monospace; }
+        pre { background: #272822; color: #f8f8f2; padding: 10px; border-radius: 5px; overflow-x: auto; }
+        .note { background: #e7f3fe; border-left: 6px solid #2196F3; padding: 10px; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+    <h1>⚡ Chuleta JavaScript: Unidad 3 ⚡</h1>
+    <p style="text-align: center;"><strong>IMPORTANTE:</strong> Abre la consola (F12) para ver los resultados ejecutados.</p>
+
+    <!-- 1. COOKIES -->
+    <div class="card">
+        <h2>1. Cookies 🍪</h2>
+        <p>Cadena de texto con caducidad. Requiere formato UTC.</p>
+        <pre>
+// 1. Crear fecha futura (+5 días)
+let fecha = new Date();
+fecha.setTime(fecha.getTime() + (5*24*60*60*1000));
+
+// 2. Guardar (Codificar valor + UTC String)
+document.cookie = "user=" + encodeURIComponent("Ana") + 
+                  "; expires=" + fecha.toUTCString();
+
+// 3. Leer (Hay que trocear el string)
+let arrayCookies = document.cookie.split(";");
+// Luego se recorre buscando .startsWith...</pre>
+    </div>
+
+    <!-- 2. STORAGE & JSON -->
+    <div class="card">
+        <h2>2. Storage & JSON 📦</h2>
+        <p><code>localStorage</code> (Eterno) y <code>sessionStorage</code> (Sesión). Solo guardan TEXTO.</p>
+        <pre>
+let datos = [{id: 1, item: "PC"}];
+
+// GUARDAR (Convertir Objeto -> Texto)
+let texto = JSON.stringify(datos);
+localStorage.setItem("miCarrito", texto);
+
+// LEER (Convertir Texto -> Objeto)
+let recuperado = localStorage.getItem("miCarrito");
+let objetoOriginal = JSON.parse(recuperado);</pre>
+    </div>
+
+    <!-- 3. FECHAS -->
+    <div class="card">
+        <h2>3. Fechas (Date) 📅</h2>
+        <p>Se calculan usando <strong>milisegundos (ms)</strong>.</p>
+        <pre>
+let hoy = new Date();
+let evento = new Date("2025-12-25");
+
+// Restar fechas = Diferencia en ms
+let msRestantes = evento.getTime() - hoy.getTime();
+
+// Convertir ms a días
+let dias = msRestantes / (1000 * 60 * 60 * 24);
+console.log(Math.ceil(dias) + " días faltan");</pre>
+    </div>
+
+    <!-- 4. STRINGS -->
+    <div class="card">
+        <h2>4. Strings (Texto) 🔤</h2>
+        <p>Métodos para limpiar y comparar.</p>
+        <pre>
+let input = "  Hola Mundo  ";
+
+// Normalizar (Quitar espacios + Minúsculas)
+let limpio = input.trim().toLowerCase(); // "hola mundo"
+
+// Comprobaciones
+limpio.includes("mundo"); // true
+limpio.startsWith("hola"); // true
+limpio.substring(5); // "mundo" (Corta desde la pos 5)</pre>
+    </div>
+
+    <!-- 5. ARRAYS -->
+    <div class="card">
+        <h2>5. Arrays (Listas) 📊</h2>
+        <p>Requieren funciones flecha <code>=></code>.</p>
+        <pre>
+let precios = [10, 50, 5, 20];
+
+// .map (Transformar) -> [12.1, 60.5...]
+let conIVA = precios.map(p => p * 1.21);
+
+// .filter (Filtrar) -> [50, 20]
+let caros = precios.filter(p => p > 15);
+
+// .find (Buscar uno) -> 5
+let barato = precios.find(p => p === 5);
+
+// .sort (Ordenar) ¡OJO! Modifica original
+// a - b (Ascendente) | b - a (Descendente)
+precios.sort((a, b) => a - b); // [5, 10, 20, 50]</pre>
+    </div>
+
+    <!-- 6. MAP -->
+    <div class="card">
+        <h2>6. Map (Diccionario) 🗺️</h2>
+        <p>Clave única -> Valor. Mejor que objetos para búsquedas.</p>
+        <pre>
+let inventario = new Map();
+
+// Guardar / Actualizar
+inventario.set("Monitor", 150);
+
+// Leer
+let valor = inventario.get("Monitor"); // 150
+
+// Comprobar
+if(inventario.has("Monitor")) { ... }
+
+// Recorrer
+for(let clave of inventario.keys()) { ... }</pre>
+    </div>
+
+    <!-- SCRIPT REAL EJECUTÁNDOSE -->
+    <script>
+        console.group("⚡ EJECUCIÓN DEL RESUMEN ⚡");
+
+        // 1. COOKIES
+        console.log("--- 1. COOKIES ---");
+        let fecha = new Date();
+        fecha.setTime(fecha.getTime() + (1 * 24 * 60 * 60 * 1000));
+        document.cookie = "testResumen=Funciona; expires=" + fecha.toUTCString();
+        console.log("Cookie actual:", document.cookie);
+
+        // 2. STORAGE
+        console.log("--- 2. STORAGE ---");
+        let usuario = { nombre: "Juan", nivel: "Pro" };
+        localStorage.setItem("user_test", JSON.stringify(usuario));
+        let recuperado = JSON.parse(localStorage.getItem("user_test"));
+        console.log("Recuperado del Storage:", recuperado);
+
+        // 3. STRINGS
+        console.log("--- 3. STRINGS ---");
+        let sucio = "   APRENDER JS   ";
+        console.log("Original:", sucio);
+        console.log("Normalizado:", sucio.trim().toLowerCase());
+
+        // 4. ARRAYS
+        console.log("--- 4. ARRAYS ---");
+        let numeros = [100, 20, 5, 60];
+        console.log("Mayores de 50 (Filter):", numeros.filter(n => n > 50));
+        console.log("Ordenados (Sort a-b):", nums_copia = [...numeros].sort((a,b)=>a-b));
+
+        // 5. MAP
+        console.log("--- 5. MAP ---");
+        let mapa = new Map();
+        mapa.set("Teclado", 25);
+        mapa.set("Ratón", 10);
+        
+        if(mapa.has("Teclado")) {
+            console.log("Precio Teclado:", mapa.get("Teclado") + "€");
+        }
+
+        console.groupEnd();
+    </script>
+</body>
+</html>
