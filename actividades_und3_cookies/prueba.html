@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<body>
+    <h2>⌚ Reloj Digital</h2>
+    <h1 id="reloj">00:00:00</h1>
+    <button onclick="pararReloj()">Quitar pilas (Parar)</button>
+
+    <script>
+        let intervaloReloj;
+
+        function iniciarReloj() {
+            // setInterval se ejecuta INFINITAMENTE cada 1000ms
+            intervaloReloj = setInterval(() => {
+                const ahora = new Date();
+                // Mostramos la hora en el H1
+                document.getElementById("reloj").innerText = 
+                    ahora.toLocaleTimeString(); 
+            }, 1000);
+        }
+
+        function pararReloj() {
+            // clearInterval detiene la repetición
+            clearInterval(intervaloReloj);
+        }
+
+        // Iniciamos el reloj nada más leer el script
+        iniciarReloj();
+    </script>
+</body>
+</html>
