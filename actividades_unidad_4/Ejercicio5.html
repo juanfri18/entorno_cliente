@@ -29,7 +29,48 @@
     <button id="btnBorrar">Eliminar primera tarea</button>
 
     <script>
-        // Aquí irá el código JavaScript
+// 1. Capturamos los botones
+var btnModificar = document.getElementById("btnModificar");
+var btnBorrar = document.getElementById("btnBorrar");
+
+// 2. Función para MODIFICAR la primera tarea
+btnModificar.addEventListener("click", function() {
+    // A) Acceder a los elementos por clase (Devuelve una lista/array)
+    // "tareas" contiene todos los divs con la clase "tarea"
+    var tareas = document.getElementsByClassName("tarea");
+
+    // Comprobamos si hay tareas en la lista
+    if (tareas.length > 0) {
+        // Seleccionamos la PRIMERA tarea (índice 0)
+        var primeraTarea = tareas[0];
+
+        // B) Modificar el atributo 'data-estado'
+        primeraTarea.setAttribute("data-estado", "en-proceso");
+        
+        // C) Modificar el texto de la descripción
+        // Buscamos el párrafo con clase "descripcion" DENTRO de esa tarea
+        var parrafoDescripcion = primeraTarea.getElementsByClassName("descripcion")[0];
+        parrafoDescripcion.textContent = "Tarea en revisión (Modificada)";
+        
+        // (Opcional visual) Cambiamos el color para que se note el cambio
+        primeraTarea.style.backgroundColor = "#e0f7fa";
+    }
+});
+
+// 3. Función para ELIMINAR la primera tarea usando parentNode
+btnBorrar.addEventListener("click", function() {
+    var tareas = document.getElementsByClassName("tarea");
+
+    if (tareas.length > 0) {
+        var primeraTarea = tareas[0];
+
+        // ELIMINACIÓN CORRECTA SEGÚN EL PDF:
+        // Accedemos al padre (parentNode) y le decimos que borre al hijo
+        primeraTarea.parentNode.removeChild(primeraTarea);
+    } else {
+        alert("No quedan tareas para eliminar.");
+    }
+});
     </script>
 
 </body>
