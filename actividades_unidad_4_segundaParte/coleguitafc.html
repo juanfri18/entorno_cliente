@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+    <img id="foto" src="img1.jpg" alt="Imagen inicial" width="200">
+    <a id="enlace" href="https://www.google.com" target="_blank">Ir a Google</a>
+    <br><br>
+    <button id="btnVer">Ver atributos</button>
+    <button id="btnCambiar">Cambiar src y href</button>
+    <button id="btnQuitar">Quitar alt y target</button>
+    <button id="btnComprobar">Comprobar atributos</button>
+
+    <script>
+        // Selección de elementos
+        const imagen = document.getElementById("foto");
+        const enlace = document.getElementById("enlace");
+
+        // 1. Ver atributos y propiedades
+        document.getElementById("btnVer").addEventListener("click", () => {
+            console.log("--- ATRIBUTOS (HTML) ---");
+            console.log("src:", imagen.getAttribute("src"));
+            console.log("href:", enlace.getAttribute("href"));
+            console.log("--- PROPIEDADES (JS) ---");
+            console.log("width:", imagen.width);
+            console.log("target:", enlace.target);
+            
+            // 5. Diferencia entre atributo y propiedad
+            console.log("Diferencia width (attr vs prop):", imagen.getAttribute("width"), "vs", imagen.width);
+        });
+
+        // 2. Cambiar atributos
+        document.getElementById("btnCambiar").addEventListener("click", () => {
+            imagen.setAttribute("src", "img2.jpg");
+            enlace.setAttribute("href", "https://www.youtube.com");
+        });
+
+        // 3. Quitar atributos
+        document.getElementById("btnQuitar").addEventListener("click", () => {
+            imagen.removeAttribute("alt");
+            enlace.removeAttribute("target");
+        });
+
+        // 4. Comprobar atributos
+        document.getElementById("btnComprobar").addEventListener("click", () => {
+            if (imagen.hasAttribute("alt")) alert("La imagen TIENE alt");
+            else alert("La imagen NO tiene alt");
+
+            if (enlace.hasAttribute("target")) alert("El enlace TIENE target");
+            else alert("El enlace NO tiene target");
+        });
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    .resaltado { background-color: yellow; font-weight: bold; }
+    .info { color: blue; }
+    .alerta { color: red; font-size: 1.5em; }
+</style>
+</head>
+<body>
+    <div id="mensaje" class="info">Bienvenido al portal</div>
+    <button id="btnAdd">Añadir clases</button>
+    <button id="btnRemove">Quitar clases</button>
+    <button id="btnToggle">Alternar resaltado</button>
+    <button id="btnStyle">Cambiar estilo en línea</button>
+
+    <script>
+        const mensaje = document.getElementById("mensaje");
+
+        // 1. Añadir clases
+        document.getElementById("btnAdd").addEventListener("click", () => {
+            mensaje.classList.add("resaltado", "alerta");
+            // 5. Comprobar si tiene la clase alerta
+            console.log("¿Contiene 'alerta'?", mensaje.classList.contains("alerta"));
+        });
+
+        // 2. Quitar clases
+        document.getElementById("btnRemove").addEventListener("click", () => {
+            mensaje.classList.remove("resaltado", "alerta");
+        });
+
+        // 3. Alternar clase (Toggle)
+        document.getElementById("btnToggle").addEventListener("click", () => {
+            mensaje.classList.toggle("resaltado");
+        });
+
+        // 4. Cambiar estilo en línea
+        document.getElementById("btnStyle").addEventListener("click", () => {
+            mensaje.style.fontStyle = "italic";
+            mensaje.style.border = "2px solid red";
+        });
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+    <div id="contenido">
+        <p>Primer párrafo</p>
+        <p>Segundo párrafo</p>
+    </div>
+    <button id="btnCambiarTexto">Cambiar texto</button>
+    <button id="btnAñadirElemento">Añadir párrafo</button>
+    <button id="btnReemplazar">Reemplazar primer párrafo</button>
+    <button id="btnEliminar">Eliminar último párrafo</button>
+    <button id="btnClonar">Clonar primero</button> <script>
+        const contenido = document.getElementById("contenido");
+
+        // 1. Modificar texto
+        document.getElementById("btnCambiarTexto").addEventListener("click", () => {
+            const parrafos = contenido.getElementsByTagName("p");
+            if(parrafos.length > 0) parrafos[0].innerText = "Texto cambiado con innerText";
+            if(parrafos.length > 1) parrafos[1].innerHTML = "Texto con <strong>negrita</strong> (innerHTML)";
+        });
+
+        // 2. Añadir elemento
+        document.getElementById("btnAñadirElemento").addEventListener("click", () => {
+            const nuevoP = document.createElement("p");
+            nuevoP.innerText = "Párrafo añadido";
+            contenido.appendChild(nuevoP);
+        });
+
+        // 3. Reemplazar elemento
+        document.getElementById("btnReemplazar").addEventListener("click", () => {
+            const parrafos = contenido.getElementsByTagName("p");
+            if (parrafos.length > 0) {
+                const nuevoP = document.createElement("p");
+                nuevoP.innerText = "Primer párrafo reemplazado";
+                contenido.replaceChild(nuevoP, parrafos[0]);
+            }
+        });
+
+        // 4. Eliminar último párrafo
+        document.getElementById("btnEliminar").addEventListener("click", () => {
+            if (contenido.lastElementChild) {
+                contenido.removeChild(contenido.lastElementChild);
+            }
+        });
+
+        // 5. Clonar elemento (usamos el botón extra que añadí o uno existente)
+        document.getElementById("btnClonar").addEventListener("click", () => {
+            const primerP = contenido.firstElementChild;
+            if (primerP) {
+                const clon = primerP.cloneNode(true);
+                contenido.appendChild(clon);
+            }
+        });
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    #menu { padding: 20px; border: 1px solid #ccc; }
+</style>
+</head>
+<body>
+    <div id="menu">
+        <button>Opción 1</button>
+        <button>Opción 2</button>
+        <button>Opción 3</button>
+    </div>
+    <p id="info">Haz clic en un botón</p>
+
+    <script>
+        const menu = document.getElementById("menu");
+        const info = document.getElementById("info");
+
+        // 1. Delegación de eventos (listener en el padre)
+        menu.addEventListener("click", (event) => {
+            // 4. Evitar que se ejecute si no es un botón
+            if (event.target.tagName === "BUTTON") {
+                
+                // 2. Cambiar fondo del botón pulsado (target)
+                event.target.style.backgroundColor = "green";
+                
+                // 2. Cambiar borde del contenedor (currentTarget)
+                event.currentTarget.style.border = "2px solid black";
+                
+                // 3. Mostrar texto en #info
+                info.innerText = "Pulsado: " + event.target.innerText;
+            }
+        });
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    .tarjeta { border: 1px solid black; padding: 10px; margin: 5px; }
+</style>
+</head>
+<body>
+    <button id="btnNueva">Crear nueva tarjeta</button> <div id="tarjetas">
+        <div class="tarjeta"><button>Editar A</button></div>
+        <div class="tarjeta"><button>Editar B</button></div>
+    </div>
+
+    <script>
+        const contenedor = document.getElementById("tarjetas");
+
+        // 1. Único listener en el contenedor
+        contenedor.addEventListener("click", (e) => {
+            // 2. Comprobar que sea un botón con matches
+            if (e.target.matches("button")) {
+                // 3. Resaltar la tarjeta padre con closest
+                const tarjeta = e.target.closest(".tarjeta");
+                if (tarjeta) {
+                    tarjeta.style.backgroundColor = "yellow";
+                }
+            }
+        });
+
+        // 4. Añadir botón dinámico para probar la delegación
+        document.getElementById("btnNueva").addEventListener("click", () => {
+            const nuevaDiv = document.createElement("div");
+            nuevaDiv.className = "tarjeta";
+            nuevaDiv.innerHTML = "<button>Editar Nuevo</button>";
+            contenedor.appendChild(nuevaDiv);
+            // Al ser delegación, ¡el nuevo botón funciona sin añadirle otro listener!
+        });
+    </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+    <h1 id="titulo">Título original</h1>
+    <button id="myButton">Clickeame</button>
+
+    <script>
+        // 1. Usar DOMContentLoaded
+        document.addEventListener("DOMContentLoaded", () => {
+            const titulo = document.getElementById("titulo");
+            titulo.textContent = "DOM listo para JS";
+        });
+
+        const btn = document.getElementById("myButton");
+
+        // 2. Asignación directa (onclick)
+        btn.onclick = function() {
+            alert("Botón clickeado (asignación directa)");
+        };
+
+        // 3. Añadir y eliminar listener
+        function saludar() {
+            console.log("Hola desde addEventListener");
+        }
+
+        // Añadimos
+        btn.addEventListener("click", saludar);
+
+        // Eliminamos inmediatamente (para probar que funciona, no saldrá el log)
+        // Puedes comentar la siguiente línea para ver que sí sale el log.
+        btn.removeEventListener("click", saludar); 
+    </script>
+</body>
+</html>

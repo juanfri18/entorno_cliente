@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<img id="foto" src="img1.jpg" alt="Imagen inicial" width="200">
+<a id="enlace" href="https://www.google.com" target="_blank">Ir a Google</a>
+<br><br>
+<button id="btnVer">Ver atributos</button>
+<button id="btnCambiar">Cambiar src y href</button>
+<button id="btnQuitar">Quitar alt y target</button>
+<button id="btnComprobar">Comprobar atributos</button>
+
+<script>
+const imagen = document.getElementById("foto");
+const enlace = document.getElementById("enlace");
+
+//Ejercicio 1
+function verAtributos() {
+    console.log("Atributo src:", imagen.getAttribute("src"));
+    console.log("Atributo href:", enlace.getAttribute("href"));
+    console.log("Propiedad width:", imagen.width); 
+    console.log("Propiedad target:", enlace.target);
+    // Ejercicio 5
+    console.log("DIFERENCIA ATRIBUTO vs PROPIEDAD ");
+    console.log("getAttribute('width') (Texto):", imagen.getAttribute("width")); 
+    console.log("imagen.width (Número):", imagen.width);
+}
+document.getElementById("btnVer").addEventListener("click", verAtributos);
+
+//Ejercicio 2
+function cambiarAtributos() {
+    imagen.setAttribute("src", "img2.jpg"); 
+    enlace.setAttribute("href", "https://www.youtube.com/");
+    console.log("Atributos cambiados correctamente.");
+}
+document.getElementById("btnCambiar").addEventListener("click", cambiarAtributos);
+
+//Ejercicio 3
+function eliminarAtributos() {
+    imagen.removeAttribute("alt"); 
+    enlace.removeAttribute("target");
+    console.log("Atributos eliminados.");
+}
+document.getElementById("btnQuitar").addEventListener("click", eliminarAtributos); 
+
+//Ejercicio 4
+function comprobarAtributos() {
+    if (imagen.hasAttribute("alt")) {
+         alert("La imagen TIENE el atributo alt");
+    } else { 
+        alert("La imagen NO tiene el atributo alt");
+    }
+    
+    if (enlace.hasAttribute("target")) {
+         alert("El enlace TIENE el atributo target");
+    } else { 
+        alert("El enlace NO tiene el atributo target");
+    }
+}
+document.getElementById("btnComprobar").addEventListener("click", comprobarAtributos);
+
+</script>
+</body>
+</html>
