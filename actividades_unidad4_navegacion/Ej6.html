@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 6 - Screen y Navigator</title>
+</head>
+<body>
+
+<h2>Información del dispositivo</h2>
+
+<ul id="info-dispositivo"></ul>
+
+<script>
+  const infoLista = document.getElementById('info-dispositivo');
+
+  const datosScreen = `
+    <li>Ancho de pantalla: ${screen.width} px</li>
+    <li>Alto de pantalla: ${screen.height} px</li>
+  `;
+
+  const datosNav = `
+    <li>Navegador (UserAgent): ${navigator.userAgent}</li>
+    <li>Idioma: ${navigator.language}</li>
+    <li>Plataforma/OS: ${navigator.platform}</li> 
+  `;
+
+  infoLista.innerHTML = datosScreen + datosNav;
+  if (screen.width < 800) {
+    alert('Estás visualizando esto en una pantalla pequeña (Móvil/Tablet).');
+  }
+</script>
+
+</body>
+</html>

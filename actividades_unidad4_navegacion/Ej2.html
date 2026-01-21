@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 2 - Nodos y elementos</title>
+</head>
+<body>
+
+<div id="bloque">
+  
+  Texto suelto
+  <!-- Comentario -->
+  <p>Primer párrafo</p>
+  <p>Segundo párrafo</p>
+
+</div>
+
+<script>
+  const bloque = document.getElementById('bloque');
+
+  const totalNodes = bloque.childNodes.length;
+  const totalElements = bloque.children.length;
+
+  console.log(`Total childNodes: ${totalNodes}`);
+  console.log(`Total children: ${totalElements}`);
+
+  // 2. Explicar la diferencia 
+  // childNodes cuenta TODO: etiquetas HTML, texto incluso espacios en blanco y saltos de línea y comentarios.
+  // children cuenta SOLO las etiquetas HTML .
+
+  bloque.childNodes.forEach(nodo => {
+    // 4. Mostrar en consola el tipo de nodo [cite: 27]
+    console.log('Nodo:', nodo, 'Tipo:', nodo.nodeType);
+
+    // nodeType === 1 significa que es un ELEMENTO (Element Node)
+    if (nodo.nodeType === 1) {
+      nodo.style.backgroundColor = 'yellow'; // Resaltamos visualmente
+      nodo.style.border = '1px solid red';
+    }
+  });
+</script>
+
+</body>
+</html>

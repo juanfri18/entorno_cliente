@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 4 - Location</title>
+</head>
+<body>
+
+<h2>Información de la URL</h2>
+<ul id="info-url"></ul>
+
+<script>
+  const listaInfo = document.getElementById('info-url');
+  const props = [
+    { nombre: 'HREF (Completa)', valor: location.href },
+    { nombre: 'Protocolo', valor: location.protocol },
+    { nombre: 'Host', valor: location.host },
+    { nombre: 'Hostname', valor: location.hostname },
+    { nombre: 'Puerto', valor: location.port },
+    { nombre: 'Pathname', valor: location.pathname },
+    { nombre: 'Search (Query)', valor: location.search },
+    { nombre: 'Hash', valor: location.hash }
+  ];
+
+  props.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = `${item.nombre}: ${item.valor}`;
+    listaInfo.appendChild(li);
+  });
+
+  if (location.search) {
+    console.log('¡Atención! La URL tiene parámetros de búsqueda.');
+  }
+
+  if (location.hash) {
+    document.body.style.backgroundColor = '#f0f0f0'; 
+    console.log('Hash detectado, color de fondo cambiado.');
+  }
+</script>
+
+</body>
+</html>

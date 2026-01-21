@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 5 - History</title>
+</head>
+<body>
+
+<h2>Navegación sin recargar</h2>
+
+<button id="btnAtras">Atrás</button>
+<button id="btnAdelante">Adelante</button>
+<button id="btnCambiar">Cambiar URL</button>
+
+<script>
+  const btnAtras = document.getElementById('btnAtras');
+  const btnAdelante = document.getElementById('btnAdelante');
+  const btnCambiar = document.getElementById('btnCambiar');
+
+  btnAtras.addEventListener('click', () => {
+    history.back();
+  });
+
+  btnAdelante.addEventListener('click', () => {
+    history.forward();
+  });
+
+  console.log('Tamaño del historial:', history.length);
+
+  btnCambiar.addEventListener('click', () => {
+    history.pushState({ page: 2 }, 'Nueva Página', '?nueva-url=simulada');
+    console.log('URL cambiada dinámicamente sin recargar la página.');
+    console.log('Nueva URL:', location.href);
+  });
+</script>
+
+</body>
+</html>

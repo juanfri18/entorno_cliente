@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 1 - Navegación DOM</title>
+  <style>
+    .contenedor {
+      border: 2px solid #333;
+      padding: 10px;
+      width: 400px;
+    }
+    article {
+      border: 1px solid #aaa;
+      margin: 5px 0;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="contenedor">
+  <article id="articulo1">
+    <h3>Título 1</h3>
+    <p>Contenido del artículo 1</p>
+  </article>
+
+  <article id="articulo2">
+    <h3>Título 2</h3>
+    <p>Contenido del artículo 2</p>
+  </article>
+</div>
+
+<script>
+  const articulo1 = document.getElementById('articulo1');
+  console.log('--- Artículo Seleccionado ---');
+  console.log(articulo1);
+
+  console.log('--- Padre e Hijos ---');
+  console.log('Padre (parentNode):', articulo1.parentNode); 
+  console.log('Todos los nodos hijos (childNodes):', articulo1.childNodes); 
+  console.log('Solo hijos elemento (children):', articulo1.children); 
+
+  console.log('--- Primer Hijo ---');
+  console.log('Primer nodo hijo (firstChild):', articulo1.firstChild); 
+  console.log('Primer elemento hijo (firstElementChild):', articulo1.firstElementChild); 
+
+  console.log('--- Hermanos ---');
+  console.log('Siguiente nodo hermano (nextSibling):', articulo1.nextSibling); 
+  console.log('Siguiente elemento hermano (nextElementSibling):', articulo1.nextElementSibling);
+
+  console.log('--- Closest ---');
+  const contenedor = articulo1.closest('.contenedor');
+  console.log('Contenedor más cercano:', contenedor);
+</script>
+
+</body>
+</html>
