@@ -2,25 +2,50 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<title>Ejercicio 2</title>
 <style>
-.resaltado { background-color: yellow; font-weight: bold; }
-.info { color: blue; }
-.alerta { color: red; font-size: 1.5em; }
+    .resaltado { background-color: yellow; font-weight: bold; }
+    .info { color: blue; }
+    .alerta { color: red; font-size: 1.5em; }
 </style>
 </head>
 <body>
-<div id="mensaje" class="info">Bienvenido al portal</div>
-<button id="btnAdd">Añadir clases</button>
-<button id="btnRemove">Quitar clases</button>
-<button id="btnToggle">Alternar resaltado</button>
-<button id="btnStyle">Cambiar estilo en línea</button>
+    <div id="mensaje" class="info">Bienvenido al portal</div>
+    <br>
+    <button id="btnAdd">Añadir clases</button>
+    <button id="btnRemove">Quitar clases</button>
+    <button id="btnToggle">Alternar resaltado</button>
+    <button id="btnStyle">Cambiar estilo en línea</button>
+
 <script>
-    const mensaje=getElementById("mensaje");
-    function resaltar(){
-        mensaje.se
-    }
-    document.getElementById("btnVer").addEventListener("click", resaltar);
+    const mensaje = document.getElementById("mensaje");
+
+    // 1
+    document.getElementById("btnAdd").addEventListener("click", () => {
+        mensaje.classList.add("resaltado", "alerta");
+        console.log("Clases añadidas.");
+        // 5
+        console.log("¿Contiene 'alerta'?", mensaje.classList.contains("alerta"));
+    });
+
+    // 2
+    document.getElementById("btnRemove").addEventListener("click", () => {
+        mensaje.classList.remove("resaltado", "alerta");
+        console.log("Clases quitadas.");
+    });
+
+    // 3 
+    document.getElementById("btnToggle").addEventListener("click", () => {
+        mensaje.classList.toggle("resaltado");
+        console.log("Clase 'resaltado' alternada.");
+    });
+
+    // 4
+    document.getElementById("btnStyle").addEventListener("click", () => {
+        mensaje.style.fontStyle = "italic";
+        mensaje.style.border = "2px solid red";
+        console.log("Estilos en línea aplicados.");
+    });
 </script>
 </body>
 </html>
-

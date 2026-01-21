@@ -2,12 +2,36 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<title>Ejercicio 6</title>
 </head>
 <body>
-<h1 id="titulo">Título original</h1>
-<button id="myButton">Clickeame</button>
+    <h1 id="titulo">Título original</h1>
+    <button id="myButton">Clickeame</button>
+
+<script>
+    // 1
+    document.addEventListener("DOMContentLoaded", () => {
+        const titulo = document.getElementById("titulo");
+        titulo.textContent = "DOM listo para JS";
+        console.log("Evento DOMContentLoaded disparado.");
+    });
+
+    const boton = document.getElementById("myButton");
+
+    // 2
+    boton.onclick = function() {
+        alert("Botón clickeado (asignación directa)");
+    };
+
+    // 3
+    function manejadorExtra() {
+        console.log("Este listener se ejecutará y luego se borrará a sí mismo.");
+        boton.removeEventListener("click", manejadorExtra);
+    }
+
+    boton.addEventListener("click", manejadorExtra);
+    
+    console.log("Listeners configurados.");
+</script>
 </body>
 </html>
-
-
-

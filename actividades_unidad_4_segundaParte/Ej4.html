@@ -2,14 +2,39 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<title>Ejercicio 4</title>
+<style>
+    #menu { padding: 20px; border: 2px solid gray; }
+    button { margin: 5px; }
+</style>
 </head>
 <body>
-<div id="menu">
-  <button>Opción 1</button>
-  <button>Opción 2</button>
-  <button>Opción 3</button>
-</div>
-<p id="info">Haz clic en un botón</p>
+    <div id="menu">
+        <button>Opción 1</button>
+        <button>Opción 2</button>
+        <button>Opción 3</button>
+    </div>
+    <p id="info">Haz clic en un botón</p>
+
+<script>
+    const menu = document.getElementById("menu");
+    const info = document.getElementById("info");
+
+    // 1.
+    menu.addEventListener("click", (event) => {
+        // 4.
+        if (event.target.tagName === "BUTTON") {
+            
+            // 2.
+            event.target.style.backgroundColor = "green";
+            event.currentTarget.style.border = "5px solid black";
+
+            // 3.
+            info.innerText = "Pulsado: " + event.target.innerText;
+        } else {
+            console.log("Clic fuera de un botón");
+        }
+    });
+</script>
 </body>
 </html>
-

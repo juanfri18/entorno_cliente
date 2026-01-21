@@ -2,17 +2,65 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<title>Ejercicio 3</title>
 </head>
 <body>
-<div id="contenido">
-  <p>Primer párrafo</p>
-  <p>Segundo párrafo</p>
-</div>
-<button id="btnCambiarTexto">Cambiar texto</button>
-<button id="btnAñadirElemento">Añadir párrafo</button>
-<button id="btnReemplazar">Reemplazar primer párrafo</button>
-<button id="btnEliminar">Eliminar último párrafo</button>
+    <div id="contenido">
+        <p>Primer párrafo</p>
+        <p>Segundo párrafo</p>
+    </div>
+    <hr>
+    <button id="btnCambiarTexto">Cambiar texto</button>
+    <button id="btnAñadirElemento">Añadir párrafo</button>
+    <button id="btnReemplazar">Reemplazar primer párrafo</button>
+    <button id="btnEliminar">Eliminar último párrafo</button>
+    <button id="btnClonar">Clonar primero</button>
+
+<script>
+    const contenedor = document.getElementById("contenido");
+
+    // 1. 
+    document.getElementById("btnCambiarTexto").addEventListener("click", () => {
+        const parrafos = contenedor.getElementsByTagName("p");
+        if(parrafos.length >= 2) {
+            parrafos[0].innerText = "Texto cambiado con innerText";
+            parrafos[1].innerHTML = "Texto cambiado con <strong>innerHTML</strong>";
+        }
+    });
+
+    // 2. 
+    document.getElementById("btnAñadirElemento").addEventListener("click", () => {
+        const nuevoP = document.createElement("p");
+        nuevoP.innerText = "Párrafo añadido";
+        contenedor.appendChild(nuevoP);
+    });
+
+    // 3. 
+    document.getElementById("btnReemplazar").addEventListener("click", () => {
+        const primerP = contenedor.firstElementChild;
+        if(primerP) {
+            const nuevoP = document.createElement("p");
+            nuevoP.innerText = "Primer párrafo reemplazado";
+            contenedor.replaceChild(nuevoP, primerP);
+        }
+    });
+
+    // 4.
+    document.getElementById("btnEliminar").addEventListener("click", () => {
+        const ultimoP = contenedor.lastElementChild;
+        if(ultimoP) {
+            contenedor.removeChild(ultimoP);
+        }
+    });
+
+    // 5. 
+    document.getElementById("btnClonar").addEventListener("click", () => {
+        const primerP = contenedor.firstElementChild;
+        if(primerP) {
+            const clon = primerP.cloneNode(true);
+            contenedor.appendChild(clon);
+        }
+    });
+</script>
 </body>
 </html>
-
-

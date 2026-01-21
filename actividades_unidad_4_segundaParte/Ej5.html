@@ -2,12 +2,55 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<title>Ejercicio 5</title>
+<style>
+    .tarjeta { 
+        border: 1px solid #ccc; 
+        padding: 10px; 
+        margin: 10px; 
+        display: inline-block; 
+    }
+</style>
 </head>
 <body>
-<div id="tarjetas">
-  <div class="tarjeta"><button>Editar A</button></div>
-  <div class="tarjeta"><button>Editar B</button></div>
-</div>
+    <button id="btnNueva">Crear nueva tarjeta</button>
+    <div id="tarjetas">
+        <div class="tarjeta">
+            <h3>Tarjeta A</h3>
+            <button>Editar A</button>
+        </div>
+        <div class="tarjeta">
+            <h3>Tarjeta B</h3>
+            <button>Editar B</button>
+        </div>
+    </div>
+
+<script>
+    const contenedorTarjetas = document.getElementById("tarjetas");
+    const btnNueva = document.getElementById("btnNueva");
+
+    // 1
+    contenedorTarjetas.addEventListener("click", (event) => {
+        // 2.
+        if (event.target.matches("button")) {
+            
+            // 3.
+            const tarjeta = event.target.closest(".tarjeta");
+            
+            if (tarjeta) {
+                tarjeta.style.backgroundColor = "yellow";
+                console.log("Editando tarjeta dentro de:", tarjeta);
+            }
+        }
+    });
+
+    // 4.
+    btnNueva.addEventListener("click", () => {
+        const nuevaDiv = document.createElement("div");
+        nuevaDiv.classList.add("tarjeta");
+        nuevaDiv.innerHTML = "<h3>Nueva Tarjeta</h3><button>Editar Nueva</button>";
+        contenedorTarjetas.appendChild(nuevaDiv);
+    });
+</script>
 </body>
 </html>
-
