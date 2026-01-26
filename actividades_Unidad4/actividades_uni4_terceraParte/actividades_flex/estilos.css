@@ -1,0 +1,121 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+/* EJERCICIO 1 */
+#ejercicio1 .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly; 
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+#ejercicio1 .item {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* EJERCICIO 2 */
+#ejercicio2 .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-color: #e0e0e0;
+    padding: 20px;
+}
+
+#ejercicio2 .item {
+    width: 250px;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* EJERCICIO 3 */
+#ejercicio3 .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 600px; 
+    background-color: #fff;
+    border: 2px solid #333;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+#ejercicio3 .item {
+    flex-basis: calc(50% - 5px); 
+    background-color: tomato;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* EJERCICIO 4 */
+#ejercicio4 .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    background-color: #2c3e50;
+    padding: 0 40px;
+    color: white;
+}
+
+#ejercicio4 .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f1c40f;
+}
+
+#ejercicio4 .menu {
+    color: #ecf0f1;
+}
+
+/* EJERCICIO 5 */
+#ejercicio5 #main {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    min-height: 400px;
+    border: 1px solid #ccc;
+}
+
+#ejercicio5 article {
+    flex-grow: 1;
+    order: 0;
+    background-color: #e8f8f5;
+    padding: 20px;
+}
+
+#ejercicio5 nav {
+    width: 200px;
+    order: -1; 
+    background-color: #d6eaf8;
+    padding: 20px;
+}
+
+#ejercicio5 aside {
+    width: 150px;
+    order: 1;
+    background-color: #fadbd8;
+    padding: 20px;
+}
