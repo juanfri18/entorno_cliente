@@ -1,0 +1,142 @@
+
+/* 2.1  */
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+
+/* 2.2 */
+p {
+    color: #333;
+}
+
+/* 2.3 */
+.destacado {
+    font-weight: bold;
+    color: darkred;
+    background-color: #f9f9f9;
+    padding: 10px;
+}
+
+/* 2.4 */
+#titulo-principal {
+    text-align: center;
+    color: navy;
+}
+
+/* 2.5.a  */
+.contenedor p {
+    margin-bottom: 10px;
+}
+
+/* 2.5.b*/
+.caja > p {
+    color: blue;
+    border: 1px solid blue;
+    padding: 5px;
+}
+
+/* 2.5.c */
+.caja + p {
+    font-style: italic;
+    color: green;
+}
+
+/* 2.6 */
+h1, h2 {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 5px;
+}
+
+/* EJERCICIO 3:  */
+
+/* 3.1 */
+.medida-px {
+    font-size: 20px;
+}
+
+/* 3.2 */
+.medida-em {
+    font-size: 1.5em;  
+}
+
+/* 3.3 */
+.medida-porcentaje {
+    font-size: 120%;
+}
+
+/*  EJERCICIO 4:  */
+
+.bloque {
+    width: 200px;
+    height: 100px;
+    margin: 10px;
+    display: inline-block;
+    color: white;
+    padding: 20px;
+    font-weight: bold;
+}
+
+/* 4.1.a */
+.bloque.a {
+    background-color: red;
+}
+
+/* 4.1.b */
+.bloque.b {
+    background-color: #008000; 
+}
+
+/* 4.1.c  */
+.bloque.c {
+    background-color: rgb(0, 0, 255); 
+}
+
+/* 4.2  */
+.bloque.d {
+    background-color: rgba(0, 0, 0, 0.5);  
+    color: white;
+}
+
+/* 4.3 */
+body {
+    background-image: url('https://via.placeholder.com/150'); 
+    background-repeat: no-repeat;        
+    background-position: right top;      
+    background-size: 100px;             
+    background-attachment: fixed;       
+    background-color: #f4f4f4; 
+}
+
+/* EJERCICIO 5: */
+
+.parrafo-texto {
+    /* 5.1  */
+    text-align: justify; 
+    
+    /* 5.2  */
+    text-indent: 30px;
+    letter-spacing: 1px;
+    line-height: 1.8;
+
+    /* 5.3  */
+    text-transform: capitalize;  
+    text-decoration: underline;
+
+    /* 5.4 */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+/* 5.5  */
+.lista {
+     list-style-type: square;       
+    list-style-position: inside;    
+    
+    /* 5.5 */
+    border: 1px solid #aaa;
+    padding: 10px;
+    background-color: white;
+}
