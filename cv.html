@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum Vitae - Desarrollador Web</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50; /* Azul oscuro elegante */
+            --accent-color: #3498db; /* Azul más vivo para detalles */
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* Contenedor principal tamaño A4 */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* Columna Izquierda (Datos y Skills) */
+        .sidebar {
+            width: 30%;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .profile-img-placeholder {
+            width: 120px;
+            height: 120px;
+            background-color: #ecf0f1;
+            border-radius: 50%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7f8c8d;
+            font-weight: bold;
+            font-size: 12px;
+            text-align: center;
+            border: 3px solid var(--accent-color);
+        }
+
+        .sidebar h3 {
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-info div, .skills-list div {
+            margin-bottom: 10px;
+        }
+
+        .contact-info strong {
+            color: var(--accent-color);
+            display: block;
+            font-size: 12px;
+        }
+
+        .skills-list li {
+            list-style: none;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        /* Columna Derecha (Contenido Principal) */
+        .main-content {
+            width: 70%;
+            padding: 40px;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .header h2 {
+            font-size: 18px;
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-top: 5px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            color: var(--primary-color);
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .job-item {
+            margin-bottom: 15px;
+        }
+
+        .job-title {
+            font-weight: bold;
+            font-size: 15px;
+            color: #2c3e50;
+        }
+
+        .job-date {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .job-desc ul {
+            padding-left: 20px;
+        }
+
+        .job-desc li {
+            margin-bottom: 5px;
+        }
+
+        /* Para impresión */
+        @media print {
+            body { background: none; -webkit-print-color-adjust: exact; }
+            .page { margin: 0; box-shadow: none; width: 100%; height: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page">
+        <div class="sidebar">
+            <div class="profile-img-placeholder">
+                [TU FOTO]
+            </div>
+
+            <div class="contact">
+                <h3>Contacto</h3>
+                <div class="contact-info">
+                    <div>
+                        <strong>Teléfono</strong>
+                        [TU NÚMERO AQUÍ]
+                    </div>
+                    <div>
+                        <strong>Email</strong>
+                        [TU EMAIL AQUÍ]
+                    </div>
+                    <div>
+                        <strong>Ubicación</strong>
+                        [TU CIUDAD]
+                    </div>
+                    <div>
+                        <strong>GitHub</strong>
+                        github.com/[TU-USUARIO]
+                    </div>
+                    <div>
+                        <strong>LinkedIn</strong>
+                        linkedin.com/in/[TU-USUARIO]
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills">
+                <h3>Stack Técnico</h3>
+                <ul class="skills-list">
+                    <li><strong>Lenguajes:</strong><br>PHP, JavaScript (ES6), HTML5, CSS3, Python</li>
+                    <li><strong>Frameworks:</strong><br>Bootstrap, Laravel (Básico)</li>
+                    <li><strong>Bases de Datos:</strong><br>MySQL, XAMPP</li>
+                    <li><strong>Herramientas:</strong><br>Git / GitHub (Control de versiones)</li>
+                </ul>
+            </div>
+
+            <div class="soft-skills">
+                <h3>Aptitudes</h3>
+                <ul class="skills-list">
+                    <li>Lógica matemática</li>
+                    <li>Resolución de problemas</li>
+                    <li>Trabajo en equipo (Scrum)</li>
+                    <li>Inglés Técnico (Lectura)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>[TU NOMBRE APELLIDO]</h1>
+                <h2>Desarrollador Web Junior (Full Stack)</h2>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Perfil Profesional</div>
+                <p>
+                    Desarrollador Web en formación finalizando el Grado Superior. Apasionado por la lógica de programación y la resolución de problemas matemáticos aplicados al código. Cuento con experiencia práctica en el desarrollo de aplicaciones web utilizando PHP, MySQL y JavaScript. Busco mi primera oportunidad profesional para aplicar mis conocimientos y seguir aprendiendo.
+                </p>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Proyectos Destacados</div>
+                
+                <div class="job-item">
+                    <div class="job-title">Plataforma Web de Gestión Fitness (Proyecto de Grado)</div>
+                    <div class="job-date">En desarrollo - Actualidad</div>
+                    <div class="job-desc">
+                        <p>Desarrollo integral de una aplicación web orientada al sector deportivo.</p>
+                        <ul>
+                            <li>Desarrollo backend con <strong>PHP</strong> y diseño de base de datos relacional en <strong>MySQL</strong>.</li>
+                            <li>Creación de interfaz responsive utilizando <strong>Bootstrap, HTML5 y CSS3</strong>.</li>
+                            <li>Lógica de cliente implementada con <strong>JavaScript</strong>.</li>
+                            <li>Gestión de código mediante repositorios.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="job-item">
+                    <div class="job-title">Repositorios de Aprendizaje</div>
+                    <div class="job-desc">
+                        <p>Mantenimiento activo de repositorios en GitHub con ejercicios y prácticas de clase, demostrando evolución y constancia en el código.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Educación</div>
+                <div class="job-item">
+                    <div class="job-title">Grado Superior en Desarrollo de Aplicaciones Web (DAW)</div>
+                    <div class="job-date">[Año Inicio] – [Año Fin Estimado]</div>
+                    <div>[Nombre de tu Instituto/Centro], [Ciudad]</div>
+                </div>
+            </div>
+            
+            </div>
+    </div>
+
+</body>
+</html>
