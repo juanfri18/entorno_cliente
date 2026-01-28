@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ejercicio 1 - Panel de botones</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; }
+  button { margin: 5px; padding: 10px 20px; }
+</style>
+</head>
+<body>
+<h2>Panel de botones</h2>
+<button id="btnClick">Click</button>
+<button id="btnDblClick">Doble Click</button>
+<script>
+  const btnClick = document.getElementById("btnClick");
+const btnDblClick = document.getElementById("btnDblClick");
+
+// 2. Evento click
+btnClick.addEventListener("click", (event) => {
+  alert("Has hecho clic en el botón"); 
+  btnClick.style.backgroundColor = "yellow"; 
+});
+
+// 3. Evento dblclick
+btnDblClick.addEventListener("dblclick", () => {
+  alert("Has hecho doble clic"); 
+  btnClick.style.backgroundColor = ""; 
+});
+</script>
+</body>
+</html>

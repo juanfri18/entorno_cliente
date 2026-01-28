@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ejercicio 4 - Formulario</title>
+<style>
+  input, button { margin: 5px 0; padding: 5px; display:block; }
+  body { font-family: Arial, sans-serif; padding: 20px; }
+</style>
+</head>
+<body>
+<h2>Formulario de contacto</h2>
+<form id="formulario">
+  <label>Nombre: <input type="text" id="nombre"></label>
+  <label>Email: <input type="email" id="email"></label>
+  <button type="submit">Enviar</button>
+</form>
+<div id="mensajes"></div>
+<script>
+  const formulario = document.getElementById("formulario");
+const inputs = document.querySelectorAll("input");
+const mensajes = document.getElementById("mensajes");
+
+inputs.forEach(input => {
+  // 1. 
+  input.addEventListener("input", () => {
+    console.log(`Valor de ${input.id}: ${input.value}`); 
+  });
+
+  // 2
+  input.addEventListener("focus", () => input.style.border = "2px solid blue");
+  input.addEventListener("blur", () => input.style.border = "");
+});
+
+// 3. 
+formulario.addEventListener("submit", (event) => {
+  event.preventDefault();
+  mensajes.textContent = "Formulario enviado con éxito";
+});
+</script>
+</body>
+</html>

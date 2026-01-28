@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ejercicio 2 - Área interactiva</title>
+<style>
+  #area { width: 300px; height: 150px; background-color: lightgray; margin-top: 20px; display:flex; align-items:center; justify-content:center; }
+</style>
+</head>
+<body>
+<h2>Área interactiva</h2>
+<div id="area">Mueve el ratón aquí</div>
+<script>
+  const area = document.getElementById("area");
+
+// 2. 
+area.addEventListener("mouseover", () => {
+  area.style.backgroundColor = "lightblue";
+});
+
+// 3. 
+area.addEventListener("mouseout", () => {
+  area.style.backgroundColor = "lightgray";
+});
+
+// 4. 
+area.addEventListener("mousemove", (event) => {
+  console.log(`X: ${event.clientX}, Y: ${event.clientY}`); 
+});
+</script>
+</body>
+</html>

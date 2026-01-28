@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ejercicio 3 - Registro de teclado</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; }
+  #info { margin-top: 20px; font-weight: bold; }
+</style>
+</head>
+<body>
+<h2>Registro de teclado</h2>
+<p>Pulsa cualquier tecla y observa los resultados en la consola o área de info.</p>
+<div id="info">Información de la tecla pulsada</div>
+<script>
+  // 1.
+document.addEventListener("keydown", (event) => {
+  console.log("Tecla pulsada:", event.key, "| Tipo:", event.type); 
+  document.body.style.backgroundColor = "#e0e0e0"; 
+});
+
+// 2. 
+document.addEventListener("keyup", (event) => {
+  console.log("Tecla soltada:", event.key, "| Tipo:", event.type); 
+  document.body.style.backgroundColor = "white"; 
+});
+</script>
+</body>
+</html>
