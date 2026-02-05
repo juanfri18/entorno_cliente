@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 3</title>
+</head>
+<body>
+<nav id="menu">
+	<ul>
+		<li>Inicio</li>
+		<li>Servicios
+			<ul>
+				<li>Web</li>
+				<li>App</li>
+			</ul>
+		</li>
+		<li>Contacto</li>
+	</ul>
+</nav>
+<script>
+
+const nav = document.getElementById("menu");
+const items = document.querySelectorAll("li");
+
+nav.addEventListener("click", function() {
+    console.log("1. Fase Captura: Detectado en <nav>");
+}, true);
+
+items.forEach(item => {
+    item.addEventListener("click", function(event) {
+        // stopPropagation no se pide, pero evitaría que suba a otros li padres
+        event.stopPropagation(); 
+        // split es para limpiar el texto y no mostrar el de los hijos
+        console.log("2. Fase Burbujeo: Detectado en <li> ->", event.target.firstChild.textContent.trim());
+    });
+});
+
+/* 4. Explicación del flujo:
+   Al hacer clic en "Web", el evento baja desde la raíz. El <nav> lo atrapa primero 
+   porque tiene el parámetro 'true' . Luego el evento sigue bajando hasta 
+   el objetivo y rebota hacia arriba , activando el listener del <li>.
+*/
+
+</script>
+</body>
+</html>

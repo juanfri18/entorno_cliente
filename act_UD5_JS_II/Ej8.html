@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 8</title>
+</head>
+<body>
+<section id="app">
+	<div class="bloque">
+		<button>Acción 1</button>
+	</div>
+	<div class="bloque">
+		<button>Acción 2</button>
+	</div>
+</section>
+<script>
+
+const app = document.getElementById("app");
+
+app.addEventListener("click", function(event) {
+    console.log("--- Auditoría ---");
+    console.log("Elemento objetivo (Target):", event.target.tagName);
+    console.log("Manejado por (CurrentTarget):", event.currentTarget.id);
+    console.log("Fase del evento:", event.eventPhase === 1 ? "Captura" : "Burbujeo");
+
+}, true);
+
+/* 3. Utilidad real: 
+   Sirve para analytics (registrar dónde clica el usuario) o debug, sin interferir 
+   con la lógica de los botones. Al ser en captura, se registra el clic 
+   incluso si el botón luego usa stopPropagation().
+
+4. Diferencia con burbujeo:
+   Si el listener estuviera en burbujeo (false), se ejecutaría DESPUÉS de los botones. 
+   Si un botón tuviera stopPropagation(), este auditor nunca se enteraría del clic.
+*/
+	
+</script>
+</body>
+</html>

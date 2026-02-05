@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 6</title>
+</head>
+<body>
+	<div class="card">
+		<a href="https://example.com">Ir al informe</a>
+	</div>
+<script>
+
+	const card = document.querySelector(".card");
+	const link = document.querySelector("a");
+
+	card.addEventListener("click", function() {
+		console.log("Card pulsada");
+	});
+
+	link.addEventListener("click", function(event) {
+		console.log("Enlace pulsado");
+		
+		event.stopPropagation();
+	});
+
+	/* 4. Explicación:
+	event.stopPropagation() sirve para matar el evento en ese punto. 
+	Resuelve el problema de que, al querer ir al enlace, se active también 
+	la lógica de la tarjeta entera como abrir un detalle o marcarla, 
+	lo cual sería un comportamiento duplicado o erróneo.
+	*/
+
+</script>
+</body>
+</html>

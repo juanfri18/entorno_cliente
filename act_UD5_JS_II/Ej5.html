@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 5</title>
+</head>
+<body>
+	<ul id="tareas">
+		<li>
+			<span>Estudiar DWEC</span>
+			<button class="ok">✔</button>
+			<button class="delete">✖</button>
+		</li>
+	</ul>
+	<button id="nueva">Nueva tarea</button>
+<script>
+
+	const lista = document.getElementById("tareas");
+	const btnNueva = document.getElementById("nueva");
+
+	lista.addEventListener("click", function(event) {
+		const elemento = event.target;
+		const tareaLi = elemento.closest("li");
+
+		if (elemento.classList.contains("ok")) {
+			tareaLi.style.textDecoration = "line-through";
+			tareaLi.style.color = "gray";
+		}
+
+		if (elemento.classList.contains("delete")) {
+			tareaLi.remove();
+		}
+	});
+
+	btnNueva.addEventListener("click", function() {
+		const nuevaLi = document.createElement("li");
+		nuevaLi.innerHTML = `
+			<span>Nueva tarea dinámica</span>
+			<button class="ok">✔</button>
+			<button class="delete">✖</button>
+		`;
+		lista.appendChild(nuevaLi);
+	});
+
+	/* Justificación: 
+	El listener no se pierde porque está puesto en el padre (<ul>). Las nuevas tareas 
+	son hijas de ese <ul>. Cuando clicas en una tarea nueva, el evento sube (burbujea) 
+	hasta el <ul>, que es quien tiene el 'event.currentTarget' y ejecuta el código.
+	*/
+
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 2</title>
+</head>
+<body>
+<div id="panel">
+		<div class="card">
+			<h3>Ventas</h3>
+			<button>Ver detalle</button>
+		</div>
+		<div class="card">
+			<h3>Clientes</h3>
+			<button>Ver detalle</button>
+		</div>
+</div>
+<script>
+
+const cards = document.querySelectorAll(".card");
+
+cards.forEach(card => {
+    card.addEventListener("click", function(event) {
+        console.log("Target (elemento tocado):", event.target.tagName);
+        console.log("CurrentTarget (dueño del listener):", event.currentTarget.className);
+
+        event.currentTarget.style.backgroundColor = "lightyellow";
+    });
+});
+
+/* 4. Justificación: 
+   No se debe usar event.target para el estilo porque si el usuario hace clic 
+   en el título h3 o el botón, event.target sería ese elemento pequeño. 
+   Al cambiarle el fondo, solo se pintaría el título o el botón, no la tarjeta completa.
+*/
+
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 4</title>
+</head>
+<body>
+	<form id="registro">
+		<input type="text" name="nombre" placeholder="Nombre">
+		<input type="email" name="email" placeholder="Email">
+		<input type="password" name="password" placeholder="Contraseña">
+	</form>
+<script>
+
+const formulario = document.getElementById("registro");
+
+formulario.addEventListener("input", function(event) {
+    const input = event.target;
+    const nombreCampo = input.name;
+    const valor = input.value;
+    let valido = true;
+
+    if (nombreCampo === "nombre") {
+        valido = valor.length >= 3;
+    } 
+    else if (nombreCampo === "password") {
+        valido = valor.length >= 6;
+    }
+
+    if (!valido) {
+        input.style.border = "2px solid red";
+        input.style.outline = "none";
+    } else {
+        input.style.border = "2px solid green";
+    }
+});
+</script>
+</body>
+</html>

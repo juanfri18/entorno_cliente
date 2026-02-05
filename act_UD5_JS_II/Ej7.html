@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 7</title>
+</head>
+<body>
+<div id="notificaciones">
+  <div class="notificacion">
+    <p>Nuevo mensaje 1</p>
+    <button>Cerrar</button>
+  </div>
+  <div class="notificacion">
+    <p>Nuevo mensaje 2</p>
+    <button>Cerrar</button>
+  </div>
+</div>
+<script>
+
+
+const contenedorNotif = document.getElementById("notificaciones");
+
+contenedorNotif.addEventListener("click", function(event) {
+    // Esto asegura que detectamos la notificación aunque pulsemos en el <p> o bordes
+    const notificacion = event.target.closest(".notificacion");
+
+    // Si pulsamos fuera de una notificación, no hacemos nada
+    if (!notificacion) return;
+
+    if (event.target.tagName === "BUTTON") {
+        notificacion.remove();
+    } 
+    // 2. Si es el cuerpo de la notificación cualquier otra cosa que no sea botón
+    else {
+        const mensaje = notificacion.querySelector("p").innerText;
+        console.log("Notificación:", mensaje);
+    }
+});
+
+</script>
+</body>
+</html>
