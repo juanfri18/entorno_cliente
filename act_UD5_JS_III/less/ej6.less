@@ -1,0 +1,22 @@
+
+@avatar-size: 100px;
+@role-color: #7f8c8d;
+
+.redondear(@radio) {
+  border-radius: @radio;
+}
+
+.avatar {
+  width: @avatar-size; 
+  height: @avatar-size; 
+  .redondear(50%);   
+}
+
+.name {
+  transition: font-size 0.2s;
+  &:hover {
+    font-size: 18px + 2px; 
+  }
+}
+
+.role { color: @role-color; }

@@ -1,0 +1,108 @@
+.card-title {
+  font-size: 32px;
+  color: #2c3e50;
+}
+.card-body {
+  font-size: 16px;
+  color: #2c3e50;
+}
+.btn-primary {
+  background-color: #3498db;
+  color: white;
+  padding: 8px 16px;
+}
+.card {
+  border: 1px solid #8bc4ea;
+  padding: 16px;
+}
+.btn-save {
+  background-color: #2ecc71;
+  color: white;
+  border-radius: 4px;
+  padding: 10px 20px;
+  border: none;
+  transition: all 0.3s;
+}
+.btn-delete {
+  background-color: #e74c3c;
+  color: white;
+  border-radius: 4px;
+  padding: 10px 20px;
+  border: none;
+  transition: all 0.3s;
+}
+.btn-cancel {
+  background-color: #95a5a6;
+  color: white;
+  border-radius: 4px;
+  padding: 10px 20px;
+  border: none;
+  transition: all 0.3s;
+}
+.plan {
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  margin: 10px;
+}
+.plan h3 {
+  font-size: 18px;
+}
+.plan p {
+  font-size: 27px;
+}
+.pro {
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  margin: 10px;
+  border: 4px solid #f1c40f;
+}
+.dark-theme {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+}
+.dark-theme .sidebar {
+  width: 250px;
+  background-color: #233140;
+}
+.dark-theme .main-panel {
+  width: calc(100% - 250px);
+}
+.alert-success {
+  padding: 15px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  border-left: 5px solid #27ae60;
+  color: #27ae60;
+}
+.alert-danger {
+  padding: 15px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  border-left: 5px solid #c0392b;
+  color: #c0392b;
+}
+.alert-warning {
+  padding: 15px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  border-left: 5px solid #f39c12;
+  color: #f39c12;
+}
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.name {
+  transition: font-size 0.2s;
+}
+.name:hover {
+  font-size: 20px;
+}
+.role {
+  color: #7f8c8d;
+}

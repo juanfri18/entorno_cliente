@@ -1,0 +1,28 @@
+
+@color-basic: #bdc3c7;
+@color-pro: #f1c40f;
+@color-enterprise: #34495e;
+@borde-pro-grosor: 4px; 
+
+.formato-plan() {
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  display: inline-block;
+  margin: 10px;
+}
+
+@font-name: 18px;
+@font-price: @font-name * 1.5;
+
+.plan {
+  .formato-plan();
+  
+  h3 { font-size: @font-name; }
+  p { font-size: @font-price; }
+}
+
+.pro {
+  .formato-plan();
+  border: @borde-pro-grosor solid @color-pro; 
+}

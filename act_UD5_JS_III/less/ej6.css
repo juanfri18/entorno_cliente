@@ -1,0 +1,14 @@
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.name {
+  transition: font-size 0.2s;
+}
+.name:hover {
+  font-size: 20px;
+}
+.role {
+  color: #7f8c8d;
+}

@@ -1,0 +1,21 @@
+.plan {
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  margin: 10px;
+}
+.plan h3 {
+  font-size: 18px;
+}
+.plan p {
+  font-size: 27px;
+}
+.pro {
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  margin: 10px;
+  border: 4px solid #f1c40f;
+}
