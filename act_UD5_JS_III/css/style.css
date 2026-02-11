@@ -1,0 +1,109 @@
+.card {
+  color: #2c3e50;
+  padding: 16px;
+  border: 1px solid #3498db;
+}
+.card .card-title {
+  font-size: 32px;
+}
+.card .card-body {
+  font-size: 16px;
+}
+.card .btn-primary {
+  background-color: #3498db;
+  padding: 8px 16px;
+  color: white;
+  border: none;
+}
+.btn-save {
+  background-color: #2ecc71;
+  color: white;
+  border-radius: 4px;
+  padding: 10px 20px;
+  border: none;
+  transition: all 0.3s;
+}
+.btn-delete {
+  background-color: #e74c3c;
+  color: white;
+  border-radius: 4px;
+  padding: 10px 20px;
+  border: none;
+  transition: all 0.3s;
+}
+.btn-cancel {
+  background-color: #95a5a6;
+  color: white;
+  border-radius: 4px;
+  padding: 10px 20px;
+  border: none;
+  transition: all 0.3s;
+}
+.formato-plan {
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.plan {
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.plan h3 {
+  font-size: 18px;
+}
+.plan p {
+  font-size: 27px;
+}
+.pro {
+  border: 4px solid #f1c40f;
+  background-color: #fcf3d0;
+}
+.dark-theme {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+}
+.dark-theme .sidebar {
+  width: 250px;
+  float: left;
+}
+.dark-theme .main-panel {
+  width: -150%;
+  float: right;
+}
+.alert-success {
+  padding: 15px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  border-left: 5px solid #27ae60;
+  color: #27ae60;
+}
+.alert-danger {
+  padding: 15px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  border-left: 5px solid #c0392b;
+  color: #c0392b;
+}
+.alert-warning {
+  padding: 15px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  border-left: 5px solid #f39c12;
+  color: #f39c12;
+}
+.employee-profile .avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.employee-profile .name {
+  font-size: 20px;
+  transition: font-size 0.2s;
+}
+.employee-profile .role {
+  color: #7f8c8d;
+}
+.employee-profile:hover .name {
+  font-size: 22px;
+}
