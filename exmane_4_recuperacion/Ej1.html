@@ -46,7 +46,7 @@
       const email = document.getElementById("email").value;
       const edad = document.getElementById("edad").value;
 
-      // Limpiar errores previos [cite: 161]
+      // Limpiar errores previos 
       document.getElementById("errorNombre").textContent = "";
       document.getElementById("errorEmail").textContent = "";
       document.getElementById("errorEdad").textContent = "";
@@ -60,21 +60,21 @@
         esValido = false;
       }
 
-      // 3b. Validar Email: obligatorio y formato válido [cite: 16]
+      // 3b. Validar Email: obligatorio y formato válido
       const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!regexEmail.test(email)) {
         document.getElementById("errorEmail").textContent = "Email no válido."; 
         esValido = false;
       }
 
-      // 3c. Validar Edad: número entre 18 y 65 [cite: 17]
+      // 3c. Validar Edad: número entre 18 y 65
       const edadNum = Number(edad);
       if (isNaN(edadNum) || edadNum < 18 || edadNum > 65) {
         document.getElementById("errorEdad").textContent = "La edad debe estar entre 18 y 65 años.";
         esValido = false;
       }
 
-      // 4. Si todo es correcto, mostrar alert [cite: 19]
+      // 4. Si todo es correcto, mostrar alert 
       if (esValido) {
         alert("Empleado registrado correctamente");
       }
