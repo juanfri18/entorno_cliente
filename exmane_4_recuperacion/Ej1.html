@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Alta de empleado</title>
+  <style>
+    .error {
+      color: red;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Alta de empleado</h2>
+
+<form id="formEmpleado">
+  <label>
+    Nombre:
+    <input type="text" id="nombre">
+  </label>
+  <p class="error" id="errorNombre"></p>
+
+  <label>
+    Email:
+    <input type="text" id="email">
+  </label>
+  <p class="error" id="errorEmail"></p>
+
+  <label>
+    Edad:
+    <input type="text" id="edad">
+  </label>
+  <p class="error" id="errorEdad"></p>
+
+  <button type="submit">Registrar</button>
+</form>
+
+  <script>
+    document.getElementById("formEmpleado").addEventListener("submit", function(event) {
+      // 1. Capturar el envío y evitar que la página se recargue 
+      event.preventDefault();
+
+      // 2. Obtener valores usando getElementById 
+      const nombre = document.getElementById("nombre").value;
+      const email = document.getElementById("email").value;
+      const edad = document.getElementById("edad").value;
+
+      // Limpiar errores previos [cite: 161]
+      document.getElementById("errorNombre").textContent = "";
+      document.getElementById("errorEmail").textContent = "";
+      document.getElementById("errorEdad").textContent = "";
+
+      let esValido = true;
+
+      // 3a. Validar Nombre: obligatorio, solo letras y espacios 
+      const regexNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+      if (nombre.trim() === "" || !regexNombre.test(nombre)) {
+        document.getElementById("errorNombre").textContent = "Nombre obligatorio (solo letras y espacios).";
+        esValido = false;
+      }
+
+      // 3b. Validar Email: obligatorio y formato válido [cite: 16]
+      const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!regexEmail.test(email)) {
+        document.getElementById("errorEmail").textContent = "Email no válido."; 
+        esValido = false;
+      }
+
+      // 3c. Validar Edad: número entre 18 y 65 [cite: 17]
+      const edadNum = Number(edad);
+      if (isNaN(edadNum) || edadNum < 18 || edadNum > 65) {
+        document.getElementById("errorEdad").textContent = "La edad debe estar entre 18 y 65 años.";
+        esValido = false;
+      }
+
+      // 4. Si todo es correcto, mostrar alert [cite: 19]
+      if (esValido) {
+        alert("Empleado registrado correctamente");
+      }
+    });
+  </script>
+
+</body>
+</html>

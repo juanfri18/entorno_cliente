@@ -1,0 +1,153 @@
+// out: css/style.css
+//ejercicio 1
+@main-color: #3498db;
+@text-color: #2c3e50;
+@base-spacing: 16px;
+@font-size-base: 16px; 
+
+.card {
+  color: @text-color;
+  padding: @base-spacing;
+  border: 1px solid @main-color; 
+
+  .card-title {
+    font-size: @font-size-base * 2; 
+  }
+
+  .card-body {
+    font-size: @font-size-base; 
+  }
+
+  .btn-primary {
+    background-color: @main-color;
+    padding: (@base-spacing / 2) @base-spacing; 
+    color: white;
+    border: none;
+  }
+}
+
+//ejercicio 2
+.configurar-boton(@color-fondo, @color-texto, @radio-borde: 4px) {
+  background-color: @color-fondo;
+  color: @color-texto;
+  border-radius: @radio-borde;
+  padding: 10px 20px;
+  border: none;
+  transition: all 0.3s; 
+}
+
+.btn-save {
+  .configurar-boton(#2ecc71, white); 
+}
+
+.btn-delete {
+  .configurar-boton(#e74c3c, white); 
+}
+
+.btn-cancel {
+  .configurar-boton(#95a5a6, white); 
+}
+//ejercicio 3
+@color-basic: #bdc3c7;
+@color-pro: #f1c40f;
+@color-enterprise: #2c3e50;
+@font-size-plan: 18px;
+
+.formato-plan {
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.plan {
+  .formato-plan;
+  
+  h3 { font-size: @font-size-plan; }
+  
+  p {
+    font-size: @font-size-plan * 1.5; 
+  }
+}
+
+.pro {
+  border: 4px solid @color-pro; 
+  background-color: lighten(@color-pro, 40%);
+}
+//ejercicio 4
+@bg-light: #ffffff;
+@text-light: #333333;
+@bg-dark: #2c3e50;
+@text-dark: #ecf0f1;
+@sidebar-width: 250px; 
+
+.dark-theme {
+  background-color: @bg-dark;
+  color: @text-dark;
+
+  .sidebar {
+    width: @sidebar-width; 
+    float: left;
+  }
+
+  .main-panel {
+    width: 100% - @sidebar-width; 
+    float: right;
+  }
+}
+//ejercicio 5
+.estilo-alerta() {
+  padding: 15px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.tipo-alerta(@color) {
+  border-left: 5px solid @color; 
+  color: @color; 
+}
+
+.alert-success {
+  .estilo-alerta();
+  .tipo-alerta(#27ae60);
+}
+
+.alert-danger {
+  .estilo-alerta();
+  .tipo-alerta(#c0392b);
+}
+
+.alert-warning {
+  .estilo-alerta();
+  .tipo-alerta(#f39c12);
+}
+//ejercicio 6
+@avatar-size: 100px;
+@role-color: #7f8c8d; 
+@font-size-name: 20px;
+
+.redondear(@radio) {
+  border-radius: @radio;
+}
+
+.employee-profile {
+  .avatar {
+    width: @avatar-size;
+    height: @avatar-size;
+    .redondear(50%); 
+  }
+
+  .name {
+    font-size: @font-size-name;
+    transition: font-size 0.2s;
+  }
+
+  .role {
+    color: @role-color;
+  }
+
+  &:hover {
+    .name {
+      font-size: @font-size-name + 2px; 
+    }
+  }
+}

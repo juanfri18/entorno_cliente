@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Alumnos</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .error { color: red; }
+        .success { color: green; }
+        ul { list-style-type: none; padding: 0; }
+        li { background: #f4f4f4; margin: 5px 0; padding: 10px; border-radius: 5px; }
+        button { margin-left: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Gestión de Alumnos</h1>
+
+    <div id="mensaje"></div>
+
+    <h3>Añadir / Editar Alumno</h3>
+    <form id="formulario">
+        <input type="hidden" id="id-alumno"> <input type="text" id="nombre" placeholder="Nombre" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="text" id="curso" placeholder="Curso" required>
+        <button type="submit">Guardar</button>
+    </form>
+
+    <h3>Lista de Alumnos</h3>
+    <ul id="lista-alumnos"></ul>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

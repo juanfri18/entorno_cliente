@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 4 - Location</title>
+</head>
+<body>
+
+<h2>Información de la URL</h2>
+<ul id="info-url"></ul>
+
+<script>
+    // 1. Seleccionamos la lista donde vamos a escribir
+    const lista = document.getElementById("info-url");
+
+    // 2. Preparamos los datos del BOM (Objeto location)
+    // location.href -> URL completa
+    // location.hostname -> Dominio (google.com)
+    // location.pathname -> Ruta del archivo (/carpeta/archivo.html)
+    // location.protocol -> http: o https:
+    
+    const datosUrl = [
+        "URL Completa (href): " + window.location.href,
+        "Protocolo: " + window.location.protocol,
+        "Host (con puerto): " + window.location.host,
+        "Hostname (sin puerto): " + window.location.hostname,
+        "Puerto: " + (window.location.port || "Por defecto (80/443)"),
+        "Ruta (pathname): " + window.location.pathname
+    ];
+
+    // 3. Recorremos los datos y creamos los <li> dinámicamente
+    datosUrl.forEach(dato => {
+        // Crear elemento li
+        const item = document.createElement("li");
+        // Rellenar texto
+        item.textContent = dato;
+        // Añadir a la lista (ul)
+        lista.appendChild(item);
+    });
+
+    // EXTRA DEL EJERCICIO (Punto 2 y 3 del PDF)
+    // Detectar si hay parámetros (?id=123)
+    if (window.location.search) {
+        console.log("La URL tiene parámetros: " + window.location.search);
+        const aviso = document.createElement("li");
+        aviso.textContent = "¡OJO! Hay parámetros en la URL";
+        aviso.style.color = "red";
+        lista.appendChild(aviso);
+    }
+
+    // Detectar si hay hash (#seccion1)
+    if (window.location.hash) {
+        document.body.style.backgroundColor = "#e0ffe0"; // Fondo verde suave si hay hash
+        console.log("Hay un ancla/hash: " + window.location.hash);
+    }
+
+</script>
+
+</body>
+</html>

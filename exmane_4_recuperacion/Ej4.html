@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Información del sistema</title>
+</head>
+<body>
+
+<h2>Información del navegador</h2>
+<ul id="info"></ul>
+
+<button id="btnHistorial">Mostrar historial</button>
+
+  <script>
+    const listaInfo = document.getElementById("info");
+
+    // 1 y 2. Mostrar datos de la URL en distintos <li>  
+    const propiedades = [
+      location.href,     // URL completa
+      location.protocol, // Protocolo 
+      location.hostname, // Hostname 
+      location.pathname  // Pathname 
+    ];
+
+    propiedades.forEach(dato => {
+      const li = document.createElement("li");
+      li.textContent = dato;
+      listaInfo.appendChild(li);
+    });
+
+    // 3. Mostrar historial y cambiar URL 
+    document.getElementById("btnHistorial").addEventListener("click", function() {
+      console.log("Longitud del historial:", history.length);  
+      
+      // Cambiar URL sin recargar usando pushState 
+      history.pushState({}, "", "url-modificada"); 
+      alert("URL modificada dinámicamente"); 
+    });
+
+    // 4. Si la URL contiene hash (#), cambiar fondo del body 
+    if (location.hash) {
+      document.body.style.backgroundColor = "lightgrey";
+    }
+  </script>
+
+</body>
+</html>

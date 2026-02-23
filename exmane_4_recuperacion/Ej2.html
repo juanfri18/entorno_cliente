@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Avisos internos</title>
+  <style>
+    .aviso {
+      background: #ffeeba;
+      margin: 5px 0;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Avisos internos</h2>
+
+<ul id="listaAvisos">
+  <li class="aviso">Reunión a las 10:00</li>
+</ul>
+
+<button id="btnAdd">Añadir aviso</button>
+<button id="btnRemove">Eliminar último aviso</button>
+
+  <script>
+    const lista = document.getElementById("listaAvisos");
+
+    // 1. Añadir aviso
+    document.getElementById("btnAdd").addEventListener("click", function() {
+      const nuevoLi = document.createElement("li"); 
+      const texto = document.createTextNode("Nuevo aviso generado");
+      
+      nuevoLi.appendChild(texto); // Asociar texto al elemento 
+      nuevoLi.classList.add("aviso"); // Asignar clase
+      lista.appendChild(nuevoLi); // Insertar en la lista
+    });
+
+    // 2. Eliminar último aviso
+    document.getElementById("btnRemove").addEventListener("click", function() {
+      const ultimo = lista.lastElementChild;
+      if (ultimo) {
+        lista.removeChild(ultimo);
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tareas</title>
+  <style>
+    .card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px 0;
+    }
+    .activa {
+      background: #d4edda;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Panel de tareas</h2>
+
+<div id="tareas">
+  <div class="card">
+    <p>Tarea 1</p>
+    <button>Completar</button>
+  </div>
+  <div class="card">
+    <p>Tarea 2</p>
+    <button>Completar</button>
+  </div>
+</div>
+
+
+  <script>
+    // 1. Delegación sobre el contenedor #tareas 
+    document.getElementById("tareas").addEventListener("click", function(event) {
+      
+      // 2. Detectar si el clic es sobre un botón con matches() 
+      if (event.target.matches("button")) {
+        
+        // 3. Localizar la tarjeta .card usando closest() 
+        const tarjeta = event.target.closest(".card");
+        
+        // 4. Añadir clase activa  
+        tarjeta.classList.add("activa");
+        
+        // 5. Cambiar texto del párrafo <p> 
+        tarjeta.querySelector("p").textContent = "Tarea completada";
+        
+        // 6. Si hay una tarjeta siguiente, cambiar borde a rojo  
+        const siguiente = tarjeta.nextElementSibling;
+        if (siguiente) {
+          siguiente.style.border = "2px solid red"; 
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
